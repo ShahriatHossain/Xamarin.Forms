@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:MMTowers.Behavior;assembly=MMTowers"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MMTowers.Views.DieselRefillPage"
+             Title="Diesel Refill">
+    <ScrollView>
+        <StackLayout Margin="20,0,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="TOWER ID" TextColor="#4184f3" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0"></Label>
+                <Label Text="{Binding BtsCode}" Grid.Row="0" Grid.Column="1" Margin="0,10,0,0"></Label>
+                <Label Text="{Binding BtsName}" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0"></Label>
+                <Label Text="{Binding BtsAddress}" Grid.Row="2" Grid.ColumnSpan="3"></Label>
+
+                <Label Text="Initial Quantity" TextColor="#4184f3" Grid.Row="3" Grid.Column="0" Margin="0,15,0,0"></Label>
+                <Entry Text="{Binding InitialQuantity}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1">
+                    <Entry.Behaviors>
+                        <behaviors:EntryLengthValidatorBehavior MaxLength="3" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="Filled Quantity" TextColor="#4184f3" Grid.Row="4" Grid.Column="0" Margin="0,15,0,0"></Label>
+                <Entry Text="{Binding FilledQuantity}" Keyboard="Numeric" Grid.Row="4" Grid.Column="1">
+                    <Entry.Behaviors>
+                        <behaviors:EntryLengthValidatorBehavior MaxLength="3" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Image Source="addimage.png" WidthRequest="40" HeightRequest="40" Margin="-40,20,0,0" Grid.Row="5" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeHMRPhotoCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="HMR Photo" TextColor="#4184f3" Margin="-40,20,0,0" Grid.Row="5" Grid.Column="1"></Label>
+                <Image Source="right.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding HMRPhotoUploaded}" Grid.Row="5" Grid.Column="2"></Image>
+                
+                <Image Source="addimage.png" WidthRequest="40" HeightRequest="40" Margin="-40,10,0,0" Grid.Row="6" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeEBPhotoCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="EB Reading Photo" TextColor="#4184f3" Margin="-40,10,0,0" Grid.Row="6" Grid.Column="1"></Label>
+                <Image Source="right.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding EBPhotoUploaded}" Grid.Row="6" Grid.Column="2"></Image>
+                
+                <Image Source="addimage.png" WidthRequest="40" HeightRequest="40" Margin="-40,10,0,0" Grid.Row="7" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeGSUPhotoCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="GSU Reading Photo" TextColor="#4184f3" Grid.Row="7" Margin="-40,10,0,0" Grid.Column="1"></Label>
+                <Image Source="right.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding GSUPhotoUploaded}" Grid.Row="7" Grid.Column="2"></Image>
+
+                <Image Source="addimage.png" WidthRequest="40" HeightRequest="40" Margin="-40,10,0,0" Grid.Row="8" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeDieselBillPhotoCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Diesel Bill Photo" TextColor="#4184f3" Grid.Row="8" Margin="-40,10,0,0" Grid.Column="1"></Label>
+                <Image Source="right.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding DieselBillPhotoUploaded}" Grid.Row="8" Grid.Column="2"></Image>
+
+                <Button Text="SUBMIT" TextColor="White" BackgroundColor="#4184f3" Margin="0,40,0,0" Grid.Row="9" Grid.Column="0" Command="{Binding RefillDieselCommand}"></Button>
+                <Button Text="CANCEL" TextColor="White" BackgroundColor="#4184f3" Margin="0,40,0,0" Grid.Row="9" Grid.Column="1" Command="{Binding ResetCommand}"></Button>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

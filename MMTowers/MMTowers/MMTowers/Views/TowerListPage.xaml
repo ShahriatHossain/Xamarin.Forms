@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MMTowers.Views.TowerListPage"
+             Title="Tower List">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="ChangePassword" Text="Change Password" Command="{Binding ChangePasswordCommand}"  Order="Secondary" Priority="2">
+        </ToolbarItem>
+        <ToolbarItem Name="ReLogin" Text="Re-Login" Command="{Binding ReLoginCommand}"  Order="Secondary" Priority="3">
+        </ToolbarItem>
+        <ToolbarItem Name="CurrentLocation" Text="Device Current Position" Command="{Binding CurrentLocationCommand}"  Order="Secondary" Priority="4">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="0">
+        <SearchBar x:Name="searchBar" Placeholder="enter text here" CancelButtonColor="Red"></SearchBar>
+        <ListView x:Name="towerListView" ItemsSource="{Binding TowerList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Vertical">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding BTSName}" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Margin="10,0,0,0" />
+                                    <Label Text="{Binding BTSCode}" FontSize="Micro" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Margin="40,0,0,0" />
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
