@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.CheckListBeforeInstallationContentPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="CHECK LIST BEFORE INSTALLATION">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Check &amp; Verify SMPS charging voltage:" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.ColumnSpan="2"></Label>
+                <Entry Grid.Row="1" Text="{Binding SmpsChargingVoltage}" Keyboard="Numeric" Grid.Column="0"></Entry>
+                <Label Text="volt." Grid.Row="1" Grid.Column="1"></Label>
+
+                <Label Text="Battery Modules Mode before connecting with SMPS:" FontSize="Medium" FontAttributes="Bold" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+                <Label Text="ON?" Grid.Row="3" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="3" Grid.Column="1" Checked="{Binding BatteryModuleOffMode}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

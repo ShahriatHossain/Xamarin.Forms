@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.GeneralInformationPage"
+             xmlns:lilonCtl="clr-namespace:MnMLilon.Controls;assembly=MnMLilon"
+             Title="General Information">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="No of Modules at Site" FontSize="Medium"  Grid.Row="0" Grid.Column="0"></Label>
+                <Entry x:Name="noOfModulesAtSite" Text="{Binding NoOfModulesAtSite}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"></Entry>
+
+                <Label Text="No of Junction Box at Site" FontSize="Medium"   Grid.Row="2" Grid.Column="0" ></Label>
+                <Entry x:Name="noOfJunctionBoxAtSite" Text="{Binding NoOfJunctionBoxAtSite}" Keyboard="Numeric" Grid.Row="3" Grid.Column="0"></Entry>
+
+                <Label Text="Problem Observed by Mahindra Engineer at Site" FontSize="Medium"  Grid.Row="4" Grid.Column="0" ></Label>
+                <Entry x:Name="siteObservation" Text="{Binding SiteObservation}" Grid.Row="5" Grid.Column="0"></Entry>
+
+                <Label Text="Solution Imparted " FontSize="Medium"  Grid.Row="6" Grid.Column="0" ></Label>
+                <Entry x:Name="solutionImparted" Text="{Binding SolutionImparted}" Grid.Row="7" Grid.Column="0"></Entry>
+
+                <Label Text="Problem Related to" FontSize="Medium" Grid.Row="8" Grid.Column="0"></Label>
+                <lilonCtl:ExtendedPicker x:Name="problemRelatedList" ItemsSource="{Binding ProblemRelatedList}" 
+                                         SelectedItem="{Binding ProblemRelated}" DisplayProperty="Name" Grid.Row="9" Grid.Column="0"></lilonCtl:ExtendedPicker>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

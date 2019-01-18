@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.BatteryBankDataInformationContentPage"
+             Title="Battery Bank Data Information">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="After Commissioning: Parameters" FontSize="Medium" FontAttributes="Bold" Grid.Row="0" Grid.ColumnSpan="2"></Label>
+                <Label Text="Sr. No." FontAttributes="Bold" Grid.Row="1" Grid.Column="0"></Label>
+                <Entry x:Name="batteryName" Text="{Binding BatteryName}" Grid.Row="1" Grid.Column="1" IsEnabled="False"></Entry>
+
+                <Label Text="Pack Voltage (V)" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"></Label>
+                <Entry x:Name="packVoltage" Text="{Binding PackVoltage}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1"></Entry>
+
+                <Label Text="SOC (%)" FontAttributes="Bold" Grid.Row="4" Grid.Column="0"></Label>
+                <Entry x:Name="socPercent" Text="{Binding SocPercent}" Keyboard="Numeric" Grid.Row="4" Grid.Column="1"></Entry>
+
+                <Label Text="SOH (%)" FontAttributes="Bold" Grid.Row="5" Grid.Column="0"></Label>
+                <Entry x:Name="sohPercent" Text="{Binding SohPercent}" Keyboard="Numeric" Grid.Row="5" Grid.Column="1"></Entry>
+
+                <Label Text="V cell min (V)" FontAttributes="Bold" Grid.Row="6" Grid.Column="0"></Label>
+                <Entry x:Name="cellVoltageMin" Text="{Binding CellVoltageMin}" Keyboard="Numeric" Grid.Row="6" Grid.Column="1"></Entry>
+
+                <Label Text="V cell max (V)" FontAttributes="Bold" Grid.Row="7" Grid.Column="0"></Label>
+                <Entry x:Name="cellVoltageMax" Text="{Binding CellVoltageMax}" Keyboard="Numeric" Grid.Row="7" Grid.Column="1"></Entry>
+
+                <Label Text="MOSFET Temp. C'" FontAttributes="Bold" Grid.Row="8" Grid.Column="0"></Label>
+                <Entry x:Name="mosfetTemp" Text="{Binding MosfetTemp}" Keyboard="Numeric" Grid.Row="8" Grid.Column="1"></Entry>
+
+                <Label Text="Cell Temp. min C'" FontAttributes="Bold" Grid.Row="9" Grid.Column="0"></Label>
+                <Entry x:Name="cellTempMin" Text="{Binding CellTempMin}" Keyboard="Numeric" Grid.Row="9" Grid.Column="1"></Entry>
+
+                <Label Text="Cell Temp. max C'" FontAttributes="Bold" Grid.Row="10" Grid.Column="0"></Label>
+                <Entry x:Name="cellTempMax" Text="{Binding CellTempMax}" Keyboard="Numeric" Grid.Row="10" Grid.Column="1"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

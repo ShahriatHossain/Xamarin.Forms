@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.SiteStatusContentPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="SITE STATUS">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Site Readiness Status:" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.ColumnSpan="2"></Label>
+                <Label Text="Ready?" Grid.Row="1" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="1" Grid.Column="1" Checked="{Binding SiteReady}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding SiteReadyRemarks}" Placeholder="Comments" Grid.Row="2" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Shortage of Material:" FontSize="Medium" FontAttributes="Bold" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                <Label Text="Yes?" Grid.Row="4" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="4" Grid.Column="1" Checked="{Binding MaterialShortage}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding MaterialShortageRemarks}" Placeholder="Comments" Grid.Row="5" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Damage of Material:" FontSize="Medium" FontAttributes="Bold" Grid.Row="6" Grid.ColumnSpan="2"></Label>
+                <Label Text="Yes?" Grid.Row="7" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="7" Grid.Column="1" Checked="{Binding MaterialDamaged}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding MaterialDamagedRemarks}" Placeholder="Comments" Grid.Row="8" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.InstallationCheckListContentPage"
+             Title="INSTALLATION CHECKLIST">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="installationCheckListView" ItemsSource="{Binding InstallationCheckList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="#0076a3" Padding="20,0,20,0">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="tick_1.png" Grid.Row="0" Grid.Column="0" IsVisible="{Binding Flag}"></Image>
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Medium" Grid.Row="0" Grid.Column="1"/>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="MnMLilon.Views.TroubleTicket.SiteDetailsPage"
+             Title="Site Details">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Site Load (In Amps):" FontSize="Medium" Grid.Row="0" Grid.ColumnSpan="2"></Label>
+                <Entry Text="{Binding SiteLoadInAmps}" Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="2"></Entry>
+
+
+                <Label Text="DG Available?" Grid.Row="2" FontSize="Medium" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="2" Grid.Column="1" Checked="{Binding DgAvailable}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <Label Text="EB Available?" FontSize="Medium" Grid.Row="3" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="3" Grid.Column="1" Checked="{Binding EbAvailable}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

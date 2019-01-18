@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.DetailsOfWorkDonePage"
+             xmlns:lilonCtl="clr-namespace:MnMLilon.Controls;assembly=MnMLilon"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="Details of Work Done">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Entry x:Name="alarmsNotice" Text="{Binding AlarmsNotice}" Placeholder="Alarms Notice" Grid.Row="0" Grid.ColumnSpan="3"></Entry>
+                <Entry x:Name="serviceEngineerRemarks" Text="{Binding ServiceEngineerRemarks}" Placeholder="Service Engineer Remarks" Grid.Row="1" Grid.ColumnSpan="3"></Entry>
+
+                <Label Text="Status of Complaints" FontSize="Medium" Grid.Row="2" Grid.ColumnSpan="3"></Label>
+                <lilonCtl:ExtendedPicker x:Name="statusOfComplaints" ItemsSource="{Binding StatusComplalinList}" 
+                                         SelectedItem="{Binding StatusComplaint}" DisplayProperty="Name" Grid.Row="3" Grid.ColumnSpan="3"></lilonCtl:ExtendedPicker>
+                <Entry x:Name="statusRemarks" Text="{Binding StatusRemarks}" Placeholder="Remarks" Grid.Row="4" Grid.ColumnSpan="3" IsVisible="False"></Entry>
+
+                <Entry x:Name="serviceEngineerRemarksWithRca" Text="{Binding ServiceEngineerRemarksWithRca}" Placeholder="Service Engineer Remarks with RCA" Grid.Row="5" Grid.ColumnSpan="3"></Entry>
+
+                <Entry x:Name="recommendation" Text="{Binding Recommendation}" Placeholder="Recommendation" Grid.Row="6" Grid.ColumnSpan="3"></Entry>
+
+                <Label Text="Details of Materials Replace at Site" FontAttributes="Bold" FontSize="Medium" Grid.Row="7" Grid.ColumnSpan="3"></Label>
+
+                <Label Text="Material Type" FontSize="Medium" Grid.Row="8" Grid.ColumnSpan="3"></Label>
+                <lilonCtl:ExtendedPicker x:Name="materialType" ItemsSource="{Binding MaterialTypeList}" 
+                                         SelectedItem="{Binding MaterialType}" DisplayProperty="Name" Grid.Row="9" Grid.ColumnSpan="3"></lilonCtl:ExtendedPicker>
+
+                <Label Text="Materials Description" FontSize="Medium" Grid.Row="10" Grid.ColumnSpan="3"></Label>
+                <lilonCtl:ExtendedPicker x:Name="materialsDescription" ItemsSource="{Binding SparePartList}" 
+                                         SelectedItem="{Binding SparePart}" DisplayProperty="PartDescription" Grid.Row="11" Grid.ColumnSpan="3"></lilonCtl:ExtendedPicker>
+
+                <Entry x:Name="partNo" Text="{Binding PartSerialNo}" Placeholder="Part No" Grid.Row="12" Grid.ColumnSpan="3" IsEnabled="False"></Entry>
+
+
+                <Entry x:Name="remarks" Text="{Binding Remarks}" Placeholder="Remarks" Grid.Row="13" Grid.ColumnSpan="2"></Entry>
+                <Entry x:Name="quantity" Text="{Binding Quantity}" Keyboard="Numeric" Placeholder="Qty" Grid.Row="13" Grid.Column="2"></Entry>
+
+                <Button x:Name="addMaterial" Text="Add" TextColor="White" BackgroundColor="#0076a3" Grid.Row="14" Grid.Column="0" Command="{Binding AddMaterialCommand}" IsEnabled="{Binding HasTroubleTicketMaterialSelected}"></Button>
+                <Button Text="View" TextColor="White" BackgroundColor="#0076a3" Grid.Row="14" Grid.Column="1" Command="{Binding ViewMaterialCommand}" IsEnabled="{Binding HasTroubleTicketMaterialAdded}"></Button>
+                <Button Text="Cancel" TextColor="White" BackgroundColor="#0076a3" Grid.Row="14" Grid.Column="2" Command="{Binding CancelCommand}"></Button>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.SiteDetailFormListContentPage"
+             Title="{Binding TransactionNumber}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="siteDetailInfo" Name="Info" Order="Primary" Text="INFO" Priority="1" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="siteDetailFormListView" ItemsSource="{Binding SiteDetailFormList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="#0076a3" Padding="20,0,20,0">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="tick_1.png" Grid.Row="0" Grid.Column="0" IsVisible="{Binding Flag}"></Image>
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Medium" Grid.Row="0" Grid.Column="1"/>
+                                    <Image Source="next_arrow.png" Grid.Row="0" Grid.Column="2"></Image>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Margin="10,0,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Submit" TextColor="White" Grid.Row="0" Grid.Column="0" BackgroundColor="#0076a3" BorderRadius="20" Command="{Binding SaveCommand}" IsEnabled="{Binding IsAllFormsHasBeenFilled}"></Button>
+            <Button Text="Cancel" TextColor="White" Grid.Row="0" Grid.Column="1" BackgroundColor="#0076a3" BorderRadius="20" Command="{Binding CancelCommand}"></Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>

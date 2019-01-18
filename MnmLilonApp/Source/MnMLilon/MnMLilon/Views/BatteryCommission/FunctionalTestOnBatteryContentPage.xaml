@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.FunctionalTestOnBatteryContentPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="Functional Test on Battery">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Communication Test between SMPS and Battery:" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.ColumnSpan="2"></Label>
+                <Label Text="Ok?" Grid.Row="1" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="1" Grid.Column="1" Checked="{Binding CommunicationTestDone}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding CommunicationTestComment}" Placeholder="Comments" Grid.Row="2" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Basic Charged and Discharged Functional Test:" FontSize="Medium" FontAttributes="Bold" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                <Label Text="Ok?" Grid.Row="4" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="4" Grid.Column="1" Checked="{Binding FunctionalTestDone}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding FunctionalTestComment}" Placeholder="Comments" Grid.Row="5" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

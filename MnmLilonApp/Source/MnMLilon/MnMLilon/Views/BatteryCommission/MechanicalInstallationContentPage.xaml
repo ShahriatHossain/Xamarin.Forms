@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.MechanicalInstallationContentPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="MECHANICAL INSTALLATION">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Bus Bar Mounting:" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="1" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="1" Grid.Column="1" Checked="{Binding BusBarMounting}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding BusBarMountingComment}" Placeholder="Comments" Grid.Row="2" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Battery Mounting:" FontSize="Medium" FontAttributes="Bold" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="4" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="4" Grid.Column="1" Checked="{Binding BatteryMounting}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding BatteryMountingComment}" Placeholder="Comments" Grid.Row="5" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

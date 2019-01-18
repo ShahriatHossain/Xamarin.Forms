@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.SignaturePage"
+             Title="Signature &amp; Remarks">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="20,0,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="19"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="File &amp; Signature:" TextColor="#0076A3" Grid.Row="0" Grid.ColumnSpan="3" Margin="50,10,0,0"></Label>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="1" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeSignature1Command}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Sign for M&amp;M representative" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="1" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding IsSignature1Taken}" Grid.Row="1" Grid.Column="2"></Image>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="2" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeSignature2Command}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Sign for Customer's representative" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="2" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding IsSignature2Taken}" Grid.Row="2" Grid.Column="2"></Image>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="5" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TakeFile1Command}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Battery Snapshot" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="5" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding IsFile1Uploaded}" Grid.Row="5" Grid.Column="2"></Image>
+
+                <Entry Placeholder="Customer Remarks" Text="{Binding CustomerRemarks}" Grid.Row="6" Grid.ColumnSpan="3"></Entry>
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

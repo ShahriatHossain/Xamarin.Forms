@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.CategoryContentPage"
+             Title="M&amp;M Li-Ion">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="ChangePassword" Text="Change Password" Command="{Binding ChangePasswordCommand}"  Order="Secondary" Priority="2">
+        </ToolbarItem>
+        <ToolbarItem Name="ReLogin" Text="Re-Login" Command="{Binding ReLoginCommand}"  Order="Secondary" Priority="3">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="categoryListView" ItemsSource="{Binding CategoryList}" RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="#0076a3" Padding="20,0,20,0">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Large" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="*" TextColor="Red" FontSize="Large" Grid.Row="0" Grid.Column="1" IsVisible="{Binding Flag}"/>
+                                    <Image Source="next_arrow.png" Grid.Row="0" Grid.Column="2"></Image>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

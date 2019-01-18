@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.MaterialsDetailPage"
+             Title="Materials Replaced at Site">
+    <ScrollView>
+        <StackLayout>
+            <Grid VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"></Label>
+                <Label Text="Materials Description" TextColor="Black" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="Part No" TextColor="Black" Grid.Row="0" Grid.Column="2"/>
+                <Label Text="Qty" TextColor="Black" Grid.Row="0" Grid.Column="3"/>
+                <Label Text="Remarks" TextColor="Black" Grid.Row="0" Grid.Column="4"/>
+                <Label Text="Material Type" TextColor="Black" Grid.Row="0" Grid.Column="5"/>
+            </Grid>
+
+            <ListView x:Name="materialListView" ItemsSource="{Binding MaterialList}" RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid VerticalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="deleteMaterial" Source="delete_icon.png" Grid.Row="0" Grid.Column="0"></Image>
+                                        <Label Text="{Binding PartDescription}" TextColor="Black" Grid.Row="0" Grid.Column="1"/>
+                                        <Label Text="{Binding PartSerialNo}" TextColor="Black" Grid.Row="0" Grid.Column="2"/>
+                                        <Label Text="{Binding Quantity}" TextColor="Black" Grid.Row="0" Grid.Column="3"/>
+                                        <Label Text="{Binding Remarks}" TextColor="Black" Grid.Row="0" Grid.Column="4"/>
+                                    <Label Text="{Binding MaterialType}" TextColor="Black" Grid.Row="0" Grid.Column="5"/>
+                                    </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Ok" TextColor="White" BackgroundColor="#0076a3" Command="{Binding DismissCommand}"></Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

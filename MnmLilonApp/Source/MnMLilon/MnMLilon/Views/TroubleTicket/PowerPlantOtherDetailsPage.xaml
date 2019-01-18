@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.PowerPlantOtherDetailsPage"
+             xmlns:lilonCtl="clr-namespace:MnMLilon.Controls;assembly=MnMLilon"
+             Title="Powerplant &amp; Setting Details">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Power Plant Details" FontSize="Medium" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"></Label>
+                <Label Text="{Binding SiteMake}" FontSize="Medium" Grid.Row="1" Grid.Column="0"></Label>
+                <Label Text="{Binding SiteModel}" FontSize="Medium" Grid.Row="2" Grid.Column="0"></Label>
+                <Label Text="{Binding SiteCapacity}" FontSize="Medium" Grid.Row="3" Grid.Column="0"></Label>
+                <Entry x:Name="siteComments" Text="{Binding SiteComments}" Placeholder="Comments" Grid.Row="4" Grid.Column="0"></Entry>
+
+                <Label Text="PP Settings" FontSize="Medium" FontAttributes="Bold" Grid.Row="5" Grid.Column="0"></Label>
+
+                <Label Text="SMPS s/w version:" FontSize="Medium"   Grid.Row="6" Grid.Column="0" ></Label>
+                <Entry x:Name="powerPlantSoftwareVersion" Text="{Binding PowerPlantSoftwareVersion}" Grid.Row="7" Grid.Column="0"></Entry>
+
+                <Label Text="Charging Voltage:" FontSize="Medium"  Grid.Row="8" Grid.Column="0" ></Label>
+                <Entry x:Name="chargingVoltage" Text="{Binding ChargingVoltage}" Grid.Row="9" Grid.Column="0"></Entry>
+
+                <Label Text="Max Charging Current/Module:" FontSize="Medium"  Grid.Row="10" Grid.Column="0" ></Label>
+                <Entry x:Name="maxChargingModule" Text="{Binding MaxChargingModule}" Grid.Row="11" Grid.Column="0"></Entry>
+
+                <Label Text="LVD Settings:" FontSize="Medium"  Grid.Row="12" Grid.Column="0" ></Label>
+                <Entry x:Name="lvdSettings" Text="{Binding LvdSettings}" Grid.Row="13" Grid.Column="0"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

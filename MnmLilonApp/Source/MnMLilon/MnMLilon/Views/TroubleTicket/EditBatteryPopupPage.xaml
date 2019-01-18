@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.EditBatteryPopupPage">
+    <!--Animations use example-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!-- Content -->
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <StackLayout BackgroundColor="White" Padding="20, 10, 20, 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <BoxView Color="#F2F2F2" Grid.ColumnSpan="2" Grid.Row="0"/>
+                <Label Text="Edit Battery:" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Margin="5,5,5,5" HorizontalOptions="Start"></Label>
+                <Image x:Name="close" Source="close.png" WidthRequest="30" HeightRequest="30" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Margin="0,5,5,0" VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="OnClose" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label Text="Old  Sr. No.:" TextColor="#0076A3" Grid.Row="1" Grid.Column="0"></Label>
+                <Entry x:Name="oldSrNo" Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="-50,-10,0,0"></Entry>
+
+                <Label Text="New Sr. No.:" TextColor="#0076A3" Grid.Row="2" Grid.Column="0"></Label>
+                <Entry x:Name="newSrNo" Grid.Row="2" Grid.Column="1" Margin="-50,-10,0,0"></Entry>
+
+                <Button x:Name="btnConfirm" Text="Confirm" TextColor="White" Grid.Row="3" Grid.Column="0" BackgroundColor="#0076a3" BorderRadius="20"></Button>
+                <Button x:Name="btnCancel" Text="Cancel" TextColor="White" Grid.Row="3" Grid.Column="1" BackgroundColor="#0076a3" BorderRadius="20"></Button>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

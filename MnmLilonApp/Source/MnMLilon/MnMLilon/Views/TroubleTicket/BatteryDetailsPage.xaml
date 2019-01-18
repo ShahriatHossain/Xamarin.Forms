@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.TroubleTicket.BatteryDetailsPage"
+             Title="Battery Details">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0"  Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="BB S/W Version" FontSize="Medium"  Grid.Row="0" Grid.ColumnSpan="2"></Label>
+                <Entry Text="{Binding BatterySoftwareVersion}" Grid.Row="1" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="BB Sr. No.:" FontSize="Medium" FontAttributes="Bold" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+
+                <ListView x:Name="batteryListView" ItemsSource="{Binding BatteryList}" Grid.Row="3" Grid.ColumnSpan="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Grid VerticalOptions="CenterAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="{Binding ModuleNo, StringFormat='{0}.'}" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Entry Text="{Binding BatterySerialNo}" Grid.Row="0" Grid.Column="1" IsEnabled="False"></Entry>
+                                            <!--<Button CommandParameter="{Binding Id}"  Clicked="Button_ClickedAsync" Text="Edit" Grid.Row="0" Grid.Column="2"></Button>-->
+                                            <Image Source="edit.png" Grid.Row="0" Grid.Column="2">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Tapped="OnTapGestureRecognizerTapped"
+                                                        CommandParameter="{Binding Id}"
+                                                        NumberOfTapsRequired="1" />
+                                                    </Image.GestureRecognizers>
+                                            </Image>
+
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

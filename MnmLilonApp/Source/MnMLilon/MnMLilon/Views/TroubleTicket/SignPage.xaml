@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:signature="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             x:Class="MnMLilon.Views.TroubleTicket.SignPage"
+             Title="Signature &amp; Remarks">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Activated="saveSign_ActivatedAsync" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,0,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding SignatureTitle}" Margin="0,10,0,0" Grid.Row="0" Grid.ColumnSpan="2"></Label>
+
+                <signature:SignaturePadView x:Name="padView" Grid.Row="1" Grid.ColumnSpan="2"
+                                HeightRequest="300" WidthRequest="400"
+                                BackgroundColor="White"
+                                SignatureLineColor="Aqua" StrokeColor="Black" StrokeWidth="2" />
+
+                <Label Text="Name" Grid.Row="2" Grid.Column="0" IsVisible="{Binding IsCustomerContactPerson}"></Label>
+                <Entry x:Name="customerContactPersonName" Text="{Binding CustomerContactPersonName}" Grid.Row="2" Grid.Column="1" IsVisible="{Binding IsCustomerContactPerson}"></Entry>
+
+                <Label Text="Mobile No." Grid.Row="3" Grid.Column="0" IsVisible="{Binding IsCustomerContactPerson}"></Label>
+                <Entry x:Name="customerContactPersonMobile" Text="{Binding CustomerContactPersonMobile}" Grid.Row="3" Grid.Column="1" IsVisible="{Binding IsCustomerContactPerson}"></Entry>
+
+                <Label Text="Designation" Grid.Row="4" Grid.Column="0" IsVisible="{Binding IsCustomerContactPerson}"></Label>
+                <Entry x:Name="customerContactPersonDesignation" Text="{Binding CustomerContactPersonDesignation}" Grid.Row="4" Grid.Column="1" IsVisible="{Binding IsCustomerContactPerson}"></Entry>
+
+
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

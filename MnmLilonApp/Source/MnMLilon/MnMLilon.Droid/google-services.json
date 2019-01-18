@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "568656929950",
+    "firebase_url": "https://mnmli-ion.firebaseio.com",
+    "project_id": "mnmli-ion",
+    "storage_bucket": "mnmli-ion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568656929950:android:695a3b207573ec98",
+        "android_client_info": {
+          "package_name": "com.xprocockit.mnmlilon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568656929950-4n43f8uqgeh5amad8qjito44dd6m8sgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFVqVr62NykT3XEFlgfMahu7i1AbUFBZs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

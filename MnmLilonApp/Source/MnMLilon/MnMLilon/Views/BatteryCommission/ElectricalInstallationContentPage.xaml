@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMLilon.Views.BatteryCommission.ElectricalInstallationContentPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="ELECTRICAL INSTALLATION">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Bus bar to battery modules power connections:" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="1" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="1" Grid.Column="1" Checked="{Binding BusBarToBatterPowerConnectionOk}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding BusBarToBatterPowerConnectionComment}" Placeholder="Comments" Grid.Row="2" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Module to Module Communication connections:" FontSize="Medium" FontAttributes="Bold" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="4" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="4" Grid.Column="1" Checked="{Binding ModuleConnectionOk}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding ModuleConnectionComment}" Placeholder="Comments" Grid.Row="5" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Bus bar kit to power plant power connections:" FontSize="Medium" FontAttributes="Bold" Grid.Row="6" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="7" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="7" Grid.Column="1" Checked="{Binding PowerPlantConnectionOk}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding PowerPlantConnectionComment}" Placeholder="Comments" Grid.Row="8" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="SMPS to battery communication connections:" FontSize="Medium" FontAttributes="Bold" Grid.Row="9" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="10" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="10" Grid.Column="1" Checked="{Binding BatteryComConnectionOk}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding BatteryComConnectionComment}" Placeholder="Comments" Grid.Row="11" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Power Connection: Continuity/Insulation/Polarity" FontSize="Medium" FontAttributes="Bold" Grid.Row="12" Grid.ColumnSpan="2"></Label>
+                <Label Text="OK?" Grid.Row="13" Grid.Column="0"></Label>
+                <controls:CheckBox Grid.Row="13" Grid.Column="1" Checked="{Binding PowerConnectionOk}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                <Entry Text="{Binding PowerConnectionComment}" Placeholder="Comments" Grid.Row="14" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
