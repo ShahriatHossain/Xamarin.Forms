@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:converters="clr-namespace:MnMFiber.Common.Xaml.Converters;assembly=MnMFiber"
+             x:Class="MnMFiber.Views.HotoFiber.OtherDetailPage"
+             NavigationPage.HasBackButton="False"
+             Title="Other Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="decimalConverter" />
+            <converters:NullableIntConverter x:Key="nullableIntConverter" />
+            <converters:NullableBoolConverter x:Key="nullableBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="No of Route Markers between two spots" FontSize="Medium" Grid.Row="0" Grid.ColumnSpan="3"></Label>
+                <Entry x:Name="noOfRouteMarkers" Text="{Binding TicketSpot.NoOfRouteMarkers, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"></Entry>
+                <Label Text="" Grid.Row="1" Grid.Column="1"></Label>
+                <Label Text="" Grid.Row="1" Grid.Column="2"></Label>
+
+                <Label Text="FMS Labelling Status" Grid.Row="4" FontSize="Medium" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="4" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="fmsLabellingStatus" Grid.Row="4" Grid.Column="2" Checked="{Binding TicketSpot.FmsLabellingStatus, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <Label Text="Route Built by HDD" FontSize="Medium" Grid.Row="5" Grid.ColumnSpan="3"></Label>
+                <Entry x:Name="routeBuildByHdd" Text="{Binding TicketSpot.RouteBuildByHdd, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="6" Grid.Column="0"></Entry>
+                <Label Text="mts" Grid.Row="6" Grid.Column="1"></Label>
+                <Label Text="" Grid.Row="6" Grid.Column="2"></Label>
+
+                <!--<Label Text="Damaged OSP" FontSize="Medium" Grid.Row="7" Grid.ColumnSpan="3"></Label>
+                <Entry x:Name="damagedOsp" Text="{Binding TicketSpot.DamagedOsp, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="8" Grid.Column="0"></Entry>
+                <Label Text="mts" Grid.Row="8" Grid.Column="1"></Label>
+                <Label Text="" Grid.Row="8" Grid.Column="2"></Label>-->
+
+                <Image Source="addimage.png" WidthRequest="40" Margin="-200,0,0,0" HeightRequest="40" Grid.Row="7" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding FileUploadCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Upload Image" TextColor="#0076A3" Margin="-200,10,0,0" Grid.Row="7" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding MediaFileFlags.IsMedia1Uploaded}" Grid.Row="7" Grid.Column="2"></Image>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

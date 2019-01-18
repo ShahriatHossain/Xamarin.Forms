@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:pickerCtl="clr-namespace:MnMFiber.Common.Xaml.Controls;assembly=MnMFiber"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:converters="clr-namespace:MnMFiber.Common.Xaml.Converters;assembly=MnMFiber"
+             x:Class="MnMFiber.Views.HotoFiber.TypeOfSpotsPage"
+             NavigationPage.HasBackButton="False"
+             Title="Type Of Spots">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="decimalConverter" />
+            <converters:NullableIntConverter x:Key="nullableIntConverter" />
+            <converters:NullableBoolConverter x:Key="nullableBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Type of Spots" TextColor="#00A2E8" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                <pickerCtl:ExtendedPicker x:Name="typeOfSpots" ItemsSource="{Binding TypeOfSpotList}" 
+                                         SelectedItem="{Binding TypeOfSpot}" DisplayProperty="Name" Grid.Row="0"  Grid.Column="1"></pickerCtl:ExtendedPicker>
+
+                <!-- Block for Tower type -->
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding TypeOfSpotsFlag.IsTypeTower}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label VerticalTextAlignment="Center" Text="Tower Id" TextColor="#00A2E8" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry x:Name="towerId" Text="{Binding TicketSpot.TowerID}" Grid.Row="0" Grid.Column="1"></Entry>
+
+                        <Label VerticalTextAlignment="Center" Text="Tower Name" FontSize="Medium" TextColor="#00A2E8" Grid.Row="1" Grid.Column="0"></Label>
+                        <Entry x:Name="towerName" Text="{Binding TicketSpot.TowerName}" Grid.Row="1" Grid.Column="1"></Entry>
+
+                        <Label VerticalTextAlignment="Center" Text="Tower Address" TextColor="#00A2E8" FontSize="Medium" Grid.Row="2" Grid.Column="0"></Label>
+                        <Entry x:Name="towerAddress" Text="{Binding TicketSpot.TowerAddress}" Grid.Row="2" Grid.Column="1"></Entry>
+                    </Grid>
+                </StackLayout>
+                
+                <!-- Block for Manhole type -->
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding TypeOfSpotsFlag.IsTypeManhole}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Cover On Spots:" Grid.Row="0" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="0" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="0" Grid.Column="2" Checked="{Binding TicketSpot.CoverOnSpots, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Visibility:" Grid.Row="1" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="1" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="1" Grid.Column="2" Checked="{Binding TicketSpot.RouteMarkersVisibility, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Number Of Enclosures" FontSize="Medium" Grid.Row="2" Grid.ColumnSpan="2"></Label>
+                        <Entry x:Name="numberOfEnclosures" Text="{Binding TicketSpot.NoOfEnclosures, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="3" Grid.ColumnSpan="2"></Entry>
+
+                    </Grid>
+                </StackLayout>
+
+                <!-- Block for Route Marker type -->
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding TypeOfSpotsFlag.IsTypeRouteMarker}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Visibility:" Grid.Row="0" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="0" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="0" Grid.Column="2" Checked="{Binding TicketSpot.RouteMarkersVisibility, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                        <Label Text="Height:" FontSize="Medium" Grid.Row="1" Grid.ColumnSpan="3"></Label>
+                        <Entry x:Name="routeMarkersHeight" Text="{Binding TicketSpot.RouteMarkersHeight, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="2" Grid.Column="0"></Entry>
+                        <Label Text="mmts" Grid.Row="2" Grid.Column="1"></Label>
+                    </Grid>
+                </StackLayout>
+
+                <!-- Block for Fiber on Route type -->
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding TypeOfSpotsFlag.IsFiberOnRoute}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Fiber placed on:" Grid.Row="0" FontSize="Medium" Grid.ColumnSpan="3"></Label>
+                        <Entry Text="{Binding TicketSpot.FiberPlacedOn}" Grid.Row="1" Grid.Column="0"></Entry>
+                        <pickerCtl:ExtendedPicker x:Name="fiberPlacedOn" ItemsSource="{Binding FiberPlacedList}" 
+                                         SelectedItem="{Binding FiberPlaced}" DisplayProperty="Name" Grid.Row="1"  Grid.Column="0"></pickerCtl:ExtendedPicker>
+                        <Label Text="" Grid.Row="1" Grid.Column="1"></Label>
+
+                        <Label Text="Landmark:" FontSize="Medium" Grid.Row="2" Grid.ColumnSpan="3"></Label>
+                        <Entry x:Name="landmark" Text="{Binding TicketSpot.FiberOnRouteLandmark}" Grid.Row="3" Grid.Column="0"></Entry>
+                        <Label Text="" Grid.Row="3" Grid.Column="1"></Label>
+
+                        <Label Text="Comments:" FontSize="Medium" Grid.Row="4" Grid.ColumnSpan="3"></Label>
+                        <Entry x:Name="comments" Text="{Binding TicketSpot.FiberOnRouteComments}" Grid.Row="5" Grid.Column="0"></Entry>
+                        <Label Text="" Grid.Row="5" Grid.Column="1"></Label>
+                    </Grid>
+                </StackLayout>
+
+                <!-- Block for Others type -->
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding TypeOfSpotsFlag.IsTypeOthers}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Description:" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry x:Name="otherDescription" Text="{Binding TicketSpot.OtherDescription}" Grid.Row="1" Grid.Column="0"></Entry>
+                    </Grid>
+                </StackLayout>
+
+                <Label Text="Distance Between Two Points" FontSize="Medium" Grid.Row="3" Grid.ColumnSpan="2"></Label>
+                <Entry x:Name="twoPointsDistance" Text="{Binding TicketSpot.TwoPointsDistance, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+                <Label Text="mts" Grid.Row="4" Grid.Column="1"></Label>
+
+                <Label Text="Number Of Visible MH/HH with earthing" FontSize="Medium" Grid.Row="5" Grid.ColumnSpan="2"></Label>
+                <Entry x:Name="numberOfVisibleMH" Text="{Binding TicketSpot.NoOfVisibleMhWithEarthing, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="6" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Number Of Non-visible MH/HH with earthing" FontSize="Medium" Grid.Row="7" Grid.ColumnSpan="2"></Label>
+                <Entry x:Name="numberOfNonVisibleMH" Text="{Binding TicketSpot.NoOfNonVisibleMhWithEarthing, Converter={StaticResource nullableIntConverter}" Keyboard="Numeric" Grid.Row="8" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

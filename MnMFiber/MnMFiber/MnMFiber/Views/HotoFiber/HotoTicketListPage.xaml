@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.HotoFiber.HotoTicketListPage"
+             NavigationPage.HasBackButton="False"
+             Title="HOTO TICKETS">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="home" Command="{Binding NavToHomeCommand}" Order="Primary" Icon="home.png" Text="Home" Priority="0" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView x:Name="ticketListView" ItemsSource="{Binding TicketList}" RowHeight="80">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Padding="20,0,20,0" BackgroundColor="{Binding RowBgColor}">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding TicketNo}" TextColor="White" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                                    <Label Text="{Binding StatusName}" TextColor="White" Grid.Row="0" Grid.Column="1"></Label>
+
+                                    <Label Text="{Binding LinkName}" TextColor="White" Grid.Row="1" Grid.Column="0"></Label>
+                                    <Label Text="{Binding SpanFromTo}" TextColor="White" Grid.Row="1" Grid.Column="1"></Label>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

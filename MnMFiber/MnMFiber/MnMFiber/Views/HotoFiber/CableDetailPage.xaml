@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:converters="clr-namespace:MnMFiber.Common.Xaml.Converters;assembly=MnMFiber"
+             x:Class="MnMFiber.Views.HotoFiber.CableDetailPage"
+             NavigationPage.HasBackButton="False"
+             Title="Cable Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="decimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="In Low Depth" Grid.Row="0" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="cableInLowDepthLength" Text="{Binding TicketSpotCable.CableInLowDepthLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="1" Grid.Column="3"></Label>
+
+                <Label Text="In Private Property" Grid.Row="2" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="cableInPrivatePropertyLength" Text="{Binding TicketSpotCable.CableInPrivatePropertyLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="3" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="3" Grid.Column="3"></Label>
+
+                <Label Text="In Forest Area" Grid.Row="4" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="cableInForestAreaLength" Text="{Binding TicketSpotCable.CableInForestAreaLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="5" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="5" Grid.Column="3"></Label>
+
+                <Label Text="Under Civic/Highway expansion" Grid.Row="6" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="cableInUnderHighwayExpansionLength" Text="{Binding TicketSpotCable.CableInUnderHighwayExpansionLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="7" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="7" Grid.Column="3"></Label>
+
+                <Label Text="Inside Highway/Road with no details" Grid.Row="8" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="cableInInsideHighwayExpansionLength" Text="{Binding TicketSpotCable.CableInInsideHighwayExpansionLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="9" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="9" Grid.Column="3"></Label>
+
+                <Label Text="Landmark" Grid.Row="10" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="landmark" Text="{Binding TicketSpotCable.CableLandmark}" Grid.Row="11" Grid.ColumnSpan="3"></Entry>
+                <Label Text="" Grid.Row="11" Grid.Column="3"></Label>
+
+                <Label Text="Remarks" Grid.Row="12" FontSize="Medium" Grid.Column="0"></Label>
+                <Entry x:Name="remarks" Text="{Binding TicketSpotCable.CableRemarks}" Grid.Row="13" Grid.ColumnSpan="3"></Entry>
+                <Label Text="" Grid.Row="13" Grid.Column="3"></Label>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

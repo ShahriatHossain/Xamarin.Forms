@@ -1,0 +1,45 @@
+{
+  "project_info": {
+    "project_number": "474677916230",
+    "firebase_url": "https://mnm-ems.firebaseio.com",
+    "project_id": "mnm-ems",
+    "storage_bucket": "mnm-ems.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474677916230:android:8ca2490ab1e49dce",
+        "android_client_info": {
+          "package_name": "com.xprocockit.mnmems"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474677916230-g8cmo98r07c759dbuavbo8l6rchf2aib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRvCKg-OtlLAyr5-8yRBw9WuZxaw0jiX4"
+        },
+        {
+          "current_key": "AIzaSyCV3OgCkw8AOsyiOd206ktUD1WG_tGlX8g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

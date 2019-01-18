@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:pickerCtl="clr-namespace:MnMFiber.Common.Xaml.Controls;assembly=MnMFiber"
+             xmlns:converters="clr-namespace:MnMFiber.Common.Xaml.Converters;assembly=MnMFiber"
+             x:Class="MnMFiber.Views.HotoFiber.FiberDetailsPage"
+             NavigationPage.HasBackButton="False"
+             Title="Fiber Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="decimalConverter" />
+            <converters:NullableIntConverter x:Key="nullableIntConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Number of OFC Cables" FontSize="Medium" Grid.Row="0" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="noOfFiberCables" Text="{Binding TicketSpotCable.NoOfFiberCables, Converter={StaticResource nullableIntConverter}}" 
+                       Keyboard="Numeric" Grid.Row="1" Grid.ColumnSpan="4"></Entry>
+
+                <Label Text="Fiber Type" FontSize="Medium" Grid.Row="2" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="fiberType" Text="{Binding TicketSpotCable.FiberType}" 
+                       Grid.Row="3" Grid.ColumnSpan="3"></Entry>
+                <Label Grid.Row="3" Grid.Column="3" Text="(12/24/48/96/288)"></Label>
+
+                <Label Text="Fiber Construction Type" FontSize="Medium" Grid.Row="4" Grid.ColumnSpan="4"></Label>
+                <pickerCtl:ExtendedPicker x:Name="fiberConstructionType" ItemsSource="{Binding FiberConstructionTypeList}" 
+                                         SelectedItem="{Binding FiberConstructionType}" DisplayProperty="Name" Grid.Row="5"  
+                                          Grid.ColumnSpan="4"></pickerCtl:ExtendedPicker>
+
+                <Label Text="Loop Length" FontSize="Medium" Grid.Row="6" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="loopLength" Text="{Binding TicketSpotCable.LoopLength, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="7" Grid.ColumnSpan="3"></Entry>
+                <Label Text="mts" Grid.Row="7" Grid.Column="3"></Label>
+
+                <Label Text="No Of Extra Fibers" FontSize="Medium" Grid.Row="8" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="noOfExtraFibers" Text="{Binding TicketSpotCable.NoOfExtraFibers, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="9" Grid.ColumnSpan="4"></Entry>
+
+                <Label Text="No of Ducts/Duct Colour" FontSize="Medium" Grid.Row="10" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="noOfDucts" Text="{Binding TicketSpotCable.NoOfDucts, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="11" Grid.Column="0"></Entry>
+                <Label Text="/" FontSize="Large" Grid.Row="11" Grid.Column="1"></Label>
+                <Entry x:Name="ductColor" Text="{Binding TicketSpotCable.DuctColor}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2"></Entry>
+
+                <Label Text="Number of Spare Ducts/Duct Colour" FontSize="Medium" Grid.Row="12" Grid.ColumnSpan="4"></Label>
+                <Entry x:Name="noOfSpareDucts" Text="{Binding TicketSpotCable.NoOfSpareDucts, Converter={StaticResource nullableIntConverter}}" Keyboard="Numeric" Grid.Row="13" Grid.Column="0"></Entry>
+                <Label Text="/" FontSize="Large" Grid.Row="13" Grid.Column="1"></Label>
+                <Entry x:Name="spareDuctColor" Text="{Binding TicketSpotCable.SpareDuctColor}" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2"></Entry>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

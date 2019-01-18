@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.ModuleListPage"
+             x:Name="moduleListPage"
+             NavigationPage.HasBackButton="False"
+             Title="M&amp;M EMS">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="ChangePassword" Text="Change Password" Command="{Binding ChangePasswordCommand}"  Order="Secondary" Priority="2">
+        </ToolbarItem>
+        <ToolbarItem Name="ReLogin" Text="Re-Login" Command="{Binding ReLoginCommand}"  Order="Secondary" Priority="3">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="fiber_module.png" WidthRequest="80" HeightRequest="80" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={x:Reference moduleListPage}, Path=BindingContext.LandingCommand}" 
+                        CommandParameter="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <!--<Image Source="surveillance_module.png" WidthRequest="80" HeightRequest="80" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={x:Reference moduleListPage}, Path=BindingContext.LandingCommand}" 
+                        CommandParameter="2" />
+                    </Image.GestureRecognizers>
+                </Image>-->
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

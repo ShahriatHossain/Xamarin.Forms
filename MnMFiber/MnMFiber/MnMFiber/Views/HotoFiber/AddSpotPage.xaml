@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.HotoFiber.AddSpotPage"
+             NavigationPage.HasBackButton="False"
+             Title="{Binding TicketDetail.TicketNo}">
+    <StackLayout>
+        <ListView x:Name="categoryListView" ItemsSource="{Binding CategoryList}" RowHeight="60">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="#4F76AC" Padding="20,0,20,0">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="10"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="tick_1.png" Grid.Row="0" Grid.Column="0" IsVisible="{Binding Flag}"></Image>
+                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Large" Grid.Row="0" Grid.Column="1"/>
+                                    <Image Source="next_arrow.png" Grid.Row="0" Grid.Column="2"></Image>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid VerticalOptions="CenterAndExpand" Margin="20,-20,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="SAVE" Grid.Row="0" Grid.Column="0" BackgroundColor="#00A2E8" Command="{Binding SaveCommand}" IsEnabled="{Binding IsAllTabsFilledUp}"></Button>
+            <Button Text="CANCEL" Grid.Row="0" Grid.Column="1" BackgroundColor="#00A2E8" Command="{Binding CancelCommand}"></Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>

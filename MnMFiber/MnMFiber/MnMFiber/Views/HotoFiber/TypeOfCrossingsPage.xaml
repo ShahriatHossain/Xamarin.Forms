@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:converters="clr-namespace:MnMFiber.Common.Xaml.Converters;assembly=MnMFiber"
+             x:Class="MnMFiber.Views.HotoFiber.TypeOfCrossingsPage"
+             NavigationPage.HasBackButton="False"
+             Title="Type Of Crossings">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveSign" Order="Primary" Icon="tick_3.png" Text="Save" Priority="0" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="decimalConverter" />
+            <converters:NullableIntConverter x:Key="nullableIntConverter" />
+            <converters:NullableBoolConverter x:Key="nullableBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Bridge" Grid.Row="0" FontSize="Medium" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="0" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="bridgeCrossing" Grid.Row="0" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.BridgeCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding TypeOfCrossingFlags.IsBridgeCrossing}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Crossing in meters" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry Text="{Binding TicketSpotCrossingCable.BridgeCrossingInMeters, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"></Entry>
+                        <Label Text="mts" Grid.Row="0" Grid.Column="2"></Label>
+                        
+                        <Label Text="Protection at both the ends" Grid.Row="1" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="1" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="1" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.BridgeProtectionAtBothEnds, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+
+                <Label Text="Railway" Grid.Row="3" FontSize="Medium" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="3" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="railwayCrossing" Grid.Row="3" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.RailwayCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="4" Grid.ColumnSpan="3" IsVisible="{Binding TypeOfCrossingFlags.IsRailwayCrossing}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Crossing in meters" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry Text="{Binding TicketSpotCrossingCable.RailwayCrossingInMeters, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"></Entry>
+                        <Label Text="mts" Grid.Row="0" Grid.Column="2"></Label>
+
+                        <Label Text="Protection at both the ends" Grid.Row="1" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="1" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="1" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.RailwayProtectionAtBothEnds, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+
+                <Label Text="Culvert" Grid.Row="6" FontSize="Medium" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="6" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="culvertCrossing" Grid.Row="6" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.CulvertCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="7" Grid.ColumnSpan="3" IsVisible="{Binding TypeOfCrossingFlags.IsCulvertCrossing}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Crossing in meters" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry Text="{Binding TicketSpotCrossingCable.CulvertCrossingInMeters, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"></Entry>
+                        <Label Text="mts" Grid.Row="0" Grid.Column="2"></Label>
+
+                        <Label Text="Protection at both the ends" Grid.Row="1" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="1" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="1" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.CulvertProtectionAtBothEnds, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+
+                <Label Text="Road" Grid.Row="9" FontSize="Medium" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="9" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="roadCrossing" Grid.Row="9" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.RoadCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="10" Grid.ColumnSpan="3" IsVisible="{Binding TypeOfCrossingFlags.IsRoadCrossing}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Crossing in meters" FontSize="Medium" Grid.Row="0" Grid.Column="0"></Label>
+                        <Entry Text="{Binding TicketSpotCrossingCable.RoadCrossingInMeters, Converter={StaticResource decimalConverter}}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1"></Entry>
+                        <Label Text="mts" Grid.Row="0" Grid.Column="2"></Label>
+
+                        <Label Text="Protection at both the ends" Grid.Row="1" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="1" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="1" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.RoadProtectionAtBothEnds, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+
+                <Label Text="Others" Grid.Row="11" FontSize="Medium" FontAttributes="Bold" Grid.Column="0"></Label>
+                <Label Text="Yes?" Grid.Row="11" Grid.Column="1"></Label>
+                <controls:CheckBox x:Name="otherCrossing" Grid.Row="11" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.OtherCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="12" Grid.ColumnSpan="3" IsVisible="{Binding TypeOfCrossingFlags.IsOthersCrossing}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Protection on Crossing " Grid.Row="0" FontSize="Medium" Grid.Column="0"></Label>
+                        <Label Text="Yes?" Grid.Row="0" Grid.Column="1"></Label>
+                        <controls:CheckBox Grid.Row="0" Grid.Column="2" Checked="{Binding TicketSpotCrossingCable.ProtectionOnCrossing, Converter={StaticResource nullableBoolConverter}}"
+                           FontName="AmericanTypewriter"
+                           HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

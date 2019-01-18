@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.HotoFiber.SignaturesPage"
+             NavigationPage.HasBackButton="False"
+             Title="Signatures">
+
+    <ScrollView>
+        <StackLayout Margin="20,0,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="19"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Signatures:" TextColor="#0076A3" Grid.Row="0" Grid.ColumnSpan="3" Margin="50,10,0,0"></Label>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="1" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding SignatureCommand}" CommandParameter="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Sign of M&amp;M Representative" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="1" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding SignatureFlags.IsSignature1Visited}" Grid.Row="1" Grid.Column="2"></Image>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="2" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding SignatureCommand}" CommandParameter="2" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Sign of Customer Representative" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="2" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding SignatureFlags.IsSignature2Visited}" Grid.Row="2" Grid.Column="2"></Image>
+
+                <Image Source="addimage.png" Margin="0,20,0,0" WidthRequest="40" HeightRequest="40" Grid.Row="3" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding SignatureCommand}" CommandParameter="3" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Sign of Third Party Representative" TextColor="#0076A3" Margin="0,25,0,0" Grid.Row="3" Grid.Column="1"></Label>
+                <Image Source="tick_2.png" WidthRequest="20" HeightRequest="20" IsVisible="{Binding SignatureFlags.IsSignature3Visited}" Grid.Row="3" Grid.Column="2"></Image>
+
+                <Button Text="SUBMIT" Grid.Row="5" Grid.Column="0" BackgroundColor="#00A2E8" Command="{Binding SaveCommand}" IsEnabled="{Binding IsAllTabsFilledUp}"></Button>
+                <Button Text="CANCEL" Grid.Row="5" Grid.Column="1" BackgroundColor="#00A2E8" Command="{Binding CancelCommand}"></Button>
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

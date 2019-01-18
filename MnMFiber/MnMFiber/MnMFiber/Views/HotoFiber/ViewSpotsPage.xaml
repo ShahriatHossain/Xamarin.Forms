@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.HotoFiber.ViewSpotsPage"
+             NavigationPage.HasBackButton="False"
+             Title="View Spots">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="back" Command="{Binding NavToBackCommand}" Order="Primary" Text="Back" Priority="0" />
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout>
+            <ListView x:Name="spotListView" ItemsSource="{Binding SpotList}" RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Padding="20,0,20,0" BackgroundColor="#4F76AC">
+                                    <Grid VerticalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="" Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding CustomLatitude}" TextColor="White"></Label>
+                                        <Label Text="" Grid.Row="0" Grid.Column="2"></Label>
+                                        
+                                        <Label Text="{Binding SerialNo}" TextColor="White" FontSize="Medium" Grid.Row="1" Grid.Column="0"></Label>
+                                        <Label Text="{Binding SpotTypeName}" TextColor="White" Grid.Row="1" Grid.Column="1"></Label>
+                                        <Image Source="next_arrow.png" Grid.Row="1" Grid.Column="2"></Image>
+
+                                        <Label Text="" Grid.Row="2" Grid.Column="0"></Label>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding CustomLongitude}" TextColor="White"></Label>
+                                        <Label Text="" Grid.Row="2" Grid.Column="2"></Label>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

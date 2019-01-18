@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MnMFiber.Views.HotoFiber.HotoTicketDetailPage"
+             NavigationPage.HasBackButton="False"
+             Title="HOTO">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="back" Command="{Binding NavToBackCommand}" Order="Primary" Text="Back" Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="20,20,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Ticket" Grid.Row="0" Grid.Column="0"></Label>
+                <Label Text=":" Grid.Row="0" Grid.Column="1"></Label>
+                <Label Text="{Binding TicketDetail.TicketNo}" Grid.Row="0" Grid.Column="2"></Label>
+
+                <Label Text="Link" Grid.Row="1" Grid.Column="0"></Label>
+                <Label Text=":" Grid.Row="1" Grid.Column="1"></Label>
+                <Label Text="{Binding TicketDetail.LinkName}" Grid.Row="1" Grid.Column="2"></Label>
+
+                <Label Text="Span" Grid.Row="2" Grid.Column="0"></Label>
+                <Label Text=":" Grid.Row="2" Grid.Column="1"></Label>
+                <Label Text="{Binding TicketDetail.SpanFromTo}" Grid.Row="2" Grid.Column="2"></Label>
+
+                <Label Text="Created BY" Grid.Row="3" Grid.Column="0"></Label>
+                <Label Text=":" Grid.Row="3" Grid.Column="1"></Label>
+                <Label Text="{Binding TicketDetail.CreatedBy}" Grid.Row="3" Grid.Column="2"></Label>
+
+                <Label Text="Created At" Grid.Row="4" Grid.Column="0"></Label>
+                <Label Text=":" Grid.Row="4" Grid.Column="1"></Label>
+                <Label Text="{Binding TicketDetail.CreatedAt}" Grid.Row="4" Grid.Column="2"></Label>
+
+                <Button Text="ADD SPOT" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="#00A2E8" Command="{Binding GotoAddSpotCommand}"></Button>
+                <Button Text="VIEW SPOTS" Grid.Row="6" Grid.ColumnSpan="3" BackgroundColor="#00A2E8" Command="{Binding GotoViewSpotsCommand}"></Button>
+
+                <Button Text="COMPLETE HOTO" Grid.Row="8" Grid.ColumnSpan="3" BackgroundColor="#22B14C" Command="{Binding HotoCompleteCommand}"></Button>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
