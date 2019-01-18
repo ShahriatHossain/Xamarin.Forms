@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 xmlns:behavior="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+			 Padding="20, 10"
+			 NavigationPage.BackButtonTitle=""
+			 Title="{Binding PageTitle}"
+			 x:Class="Pigeon.Views.ChannelSecureIdPage">
+  
+  <StackLayout VerticalOptions="StartAndExpand" Margin="0,90,0,0" >
+	
+		<Grid>
+
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Entry x:Name="newSecureCode"  Grid.Row="1" Grid.Column="0" Keyboard="Numeric" HorizontalTextAlignment="Center"
+			 Text="{Binding NewSecurePin}" Style="{StaticResource entryStyleBlack}"
+			 Placeholder="Enter Secure Pin" >
+				<Entry.Behaviors>
+					<behavior:NumberValidatorBehavior x:Name="newSecureCodeValidator" />
+					<behavior:MaxLengthValidator  MaxLength="4"/>
+				</Entry.Behaviors>
+			</Entry>
+
+			<Image Grid.Row="1" Grid.Column="1" x:Name="newSecureCodeSuccessErrorImage"
+					Style="{Binding Source={x:Reference newSecureCodeValidator}, 
+								Path=IsValid, 
+								Converter={StaticResource boolToStyleImage}}"/>
+		</Grid>
+
+		<Button x:Name="loginButton" Text="Update Secure Pin" WidthRequest="300"
+			Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+			<Button.Triggers>
+				<MultiTrigger TargetType="Button">
+					<MultiTrigger.Conditions>
+						<BindingCondition Binding="{Binding Source={x:Reference newSecureCode},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										   Value="true" />
+					</MultiTrigger.Conditions>
+
+					<Setter Property="IsEnabled" Value="True" />
+					<Setter Property="Command" Value="{Binding UpdateCommand}" />
+				</MultiTrigger>
+			</Button.Triggers>
+		</Button>
+	</StackLayout>
+</ContentPage>

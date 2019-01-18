@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+			 xmlns:controls="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+			 xmlns:circleButton="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+			 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+			 x:Class="Pigeon.Views.ChannelListPage"
+			 x:Name="channelListPage"
+			 Title="CHANNEL">
+	<StackLayout>
+		<Grid Padding="20,10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+
+			<Label Text="SUBSCRIBED CHANNELS" Grid.Row="0" Grid.Column="0"></Label>
+			<Label Text="You have not subscribed into any channel" IsVisible="{Binding HasRecordForSubscribeChannel}" Grid.Row="1" Grid.Column="0"></Label>
+			<ListView ItemsSource="{Binding SubscribedChannelList}" x:Name="subscribedChannelListView" Grid.Row="1" Grid.Column="0">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout VerticalOptions="CenterAndExpand">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="35"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="15" />
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="Auto" />
+										</Grid.ColumnDefinitions>
+
+										<ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" 
+																	HeightRequest="50" Grid.Row="0" Grid.Column="0" 
+																	DownsampleToViewSize="true"
+											Source = "{Binding LogoUri}">
+										</ffimageloading:CachedImage>
+
+										<Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" VerticalOptions="Center" Grid.Column="1" />
+
+										<ffimageloading:CachedImage WidthRequest="15" HeightRequest="15" Grid.Row="0" 
+                                                                    Grid.Column="2" Source="lock2020.png" IsVisible="{Binding IsPrivate}"
+																	DownsampleToViewSize="true">
+                                        </ffimageloading:CachedImage>
+                                        <ffimageloading:CachedImage WidthRequest="20" HeightRequest="20" Grid.Row="0" 
+                                                                    Grid.Column="3" Source="notification_purple_icon.png" 
+                                                                    IsVisible="{Binding HasNewNoticeCreated}"
+																	DownsampleToViewSize="true">
+                                        </ffimageloading:CachedImage>
+									</Grid>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			
+			<Label Text="MY CHANNELS" Grid.Row="2" Grid.Column="0" Margin="0,20,0,0"></Label>
+			<Label Text="You have not created any channel" IsVisible="{Binding HasRecordForMyChannel}" Grid.Row="3" Grid.Column="0"></Label>
+			<ListView ItemsSource="{Binding MyChannelList}" x:Name="myChannelListView" Grid.Row="3" Grid.Column="0">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<StackLayout VerticalOptions="CenterAndExpand">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="35"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+										</Grid.ColumnDefinitions>
+
+										<ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" HeightRequest="50" 
+																	Grid.Row="0" Grid.Column="0" DownsampleToViewSize="true"
+											Source = "{Binding LogoUri}">
+										</ffimageloading:CachedImage>
+
+										<Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" VerticalOptions="Center" Grid.Column="1" />
+
+                                        <ffimageloading:CachedImage WidthRequest="15" HeightRequest="15" Grid.Row="0" Margin="0,0,20,0"
+                                                                    Grid.Column="2" Source="mychannel_edit_icon.png" 
+																	DownsampleToViewSize="true">
+                                            <ffimageloading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference channelListPage}, Path=BindingContext.EditChannelInfo}" CommandParameter="{Binding ChannelId}" />
+                                            </ffimageloading:CachedImage.GestureRecognizers>
+                                        </ffimageloading:CachedImage>
+                                    </Grid>
+								</StackLayout>
+							</ViewCell.View>
+						</ViewCell>
+
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+			<fabControl:FloatingActionButton x:Name="FAB" HorizontalOptions="End" VerticalOptions="End" 
+											 WidthRequest="50" HeightRequest="50" Image="big_plus.png" ButtonColor="#865681"
+											 Grid.Row="4" Grid.Column="0" Margin="0,0,0,20" Clicked="AddChannelFab_ClickedAsync" />
+		</Grid>
+	</StackLayout>
+</ContentPage>

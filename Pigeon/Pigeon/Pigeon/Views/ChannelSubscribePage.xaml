@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.ChannelSubscribePage"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON"
+             Padding="20, 10">
+  <StackLayout>
+  <ScrollView Orientation="Vertical">
+    <StackLayout Orientation="Vertical">
+      
+      <Image  WidthRequest="50" HeightRequest="50">
+        <Image.Source>
+           <UriImageSource Uri="{Binding OrgLogoSource}"/>
+        </Image.Source>
+      </Image>
+      <Entry IsEnabled="False" Placeholder="Channel Name"  Text="{Binding ChannelName}" HorizontalTextAlignment="Center"/>
+      <Entry IsEnabled="False" Placeholder="Institute Name"  Text="{Binding InstituteName}" HorizontalTextAlignment="Center"/>
+      <Entry IsEnabled="False" Placeholder="Area"  Text="{Binding Area}" HorizontalTextAlignment="Center" />
+      <Entry IsEnabled="False" Placeholder="District"  Text="{Binding District}" HorizontalTextAlignment="Center" />
+      <Entry IsEnabled="False" Placeholder="Division"  Text="{Binding Division}" HorizontalTextAlignment="Center" />
+      <Entry IsEnabled="False" Placeholder="Description"  Text="{Binding Description}" HorizontalTextAlignment="Center" />
+    </StackLayout>
+  </ScrollView>
+    <Button x:Name="createButton" Text="Subscribe" WidthRequest="300"
+                Style="{StaticResource buttonStyleRed}"
+                 Margin="0,10,0,0" Command="{Binding SubscribeCommand}">
+    </Button>
+  </StackLayout>
+</ContentPage>

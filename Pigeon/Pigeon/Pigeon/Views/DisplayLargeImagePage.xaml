@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:converter="clr-namespace:Pigeon.Xaml.Converter;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="Pigeon.Views.DisplayLargeImagePage"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<ActivityIndicator x:Name="activityIndicator" Color="Red"/>
+            <ffimageloading:CachedImage Source="{Binding ImageUrl}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    Aspect="Fill"
+                    DownsampleToViewSize="True"/>-->
+            
+            <ActivityIndicator x:Name="activityIndicator" Color="Red"/>
+            <AbsoluteLayout>
+                <converter:PinchToZoomContainer>
+                    <converter:PinchToZoomContainer.Content>
+                        <Image Source = "{Binding ImageUrl}" />
+                    </converter:PinchToZoomContainer.Content>
+                </converter:PinchToZoomContainer>
+            </AbsoluteLayout>
+            <!--<ActivityIndicator x:Name="activityIndicator" Color="Red"/>
+            <AbsoluteLayout>
+                <converter:PinchToZoomContainer>
+                    <converter:PinchToZoomContainer.Content>
+                        <ffimageloading:CachedImage DownsampleToViewSize="true" HeightRequest="120d" WidthRequest="120d"  Source = "{Binding ImageUrl}"></ffimageloading:CachedImage>
+                    </converter:PinchToZoomContainer.Content>
+                </converter:PinchToZoomContainer>
+            </AbsoluteLayout>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

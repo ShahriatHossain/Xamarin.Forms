@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.ChannelSearchPage"
+             xmlns:behav="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON">
+    <StackLayout Orientation="Vertical" Spacing="0" Padding="20,10">
+      <SearchBar Text="{Binding SearchText}" Placeholder="enter text here" CancelButtonColor="Red">
+        <SearchBar.Behaviors>
+          <behav:EventToCommandBehavior EventName="TextChanged" Command="{Binding ChannelSearchCommand}" />
+        </SearchBar.Behaviors>
+      </SearchBar>
+
+      
+      <Label Text="{Binding NoRecordFound}" HorizontalTextAlignment="Center" IsVisible="{Binding IsShowDefaultText}"></Label>
+      <ListView ItemsSource="{Binding Channels}" x:Name="ChannelsView" SelectedItem="{Binding SelectedChannelApi}">
+        <ListView.Behaviors>
+          <behav:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ChannelDetailCommand}" CommandParameter="{Binding SelectedItem, Source={Reference ChannelsView}}" Converter="{StaticResource SelectedItemConverter}" />
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout Orientation="Vertical">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="10" />
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                     <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" />
+                  </Grid>
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+</ContentPage>

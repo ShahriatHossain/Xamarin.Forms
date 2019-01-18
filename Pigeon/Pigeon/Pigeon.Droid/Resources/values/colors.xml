@@ -1,0 +1,9 @@
+<resources>
+  <color name="primary">#2196F3</color>
+  <color name="primaryDark">#5c3857</color>
+  <color name="accent">#FFC107</color>
+  <color name="window_background">#F5F5F5</color>
+  <color name="window_background_splash">#865681</color>
+  <color name="ListViewSelected">#cccccc</color>
+  <color name="ListViewHighlighted">#cccccc</color>
+</resources>

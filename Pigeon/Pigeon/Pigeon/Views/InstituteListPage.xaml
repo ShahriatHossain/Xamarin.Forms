@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.InstituteListPage"
+             xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             x:Name="instituteListPage"
+             Title="INSTITUTE">
+    <StackLayout>
+        <Grid Padding="20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Label Text="SUBSCRIBED INSTITUTES" Grid.Row="0" Grid.Column="0"></Label>
+            <Label Text="You have not subscribed into any institute" IsVisible="{Binding HasRecordForSubscribeInstitute}" Grid.Row="1" Grid.Column="0"></Label>
+            <ListView ItemsSource="{Binding SubscribedInstituteList}" x:Name="subscribedInstituteListView" Grid.Row="1" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" 
+                                                                    HeightRequest="50" Grid.Row="0" Grid.Column="1" 
+                                                                    DownsampleToViewSize="true"
+			                                Source = "{Binding LogoUri}">
+                                        </ffimageloading:CachedImage>
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="2" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <Label Text="MY INSTITUTES" Grid.Row="2" Grid.Column="0"></Label>
+            <Label Text="You have not created any institute" IsVisible="{Binding HasRecordForMyInstitute}" Grid.Row="3" Grid.Column="0"></Label>
+            <ListView ItemsSource="{Binding MyInstituteList}" x:Name="myInstituteListView" Grid.Row="3" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" 
+                                                                    HeightRequest="50" Grid.Row="0" Grid.Column="1" 
+                                                                    DownsampleToViewSize="true"
+			                                Source = "{Binding LogoUri}">
+                                        </ffimageloading:CachedImage>
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="2" />
+                                        <ffimageloading:CachedImage WidthRequest="15" HeightRequest="15" Grid.Row="0" Margin="0,0,20,0"
+                                                                    Grid.Column="3" Source="mychannel_edit_icon.png" 
+																	DownsampleToViewSize="true">
+                                            <ffimageloading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference instituteListPage}, Path=BindingContext.EditInstituteInfo}" CommandParameter="{Binding InstituteId}" />
+                                            </ffimageloading:CachedImage.GestureRecognizers>
+                                        </ffimageloading:CachedImage>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <fabControl:FloatingActionButton x:Name="FAB" HorizontalOptions="End" VerticalOptions="End" 
+                                             WidthRequest="50" HeightRequest="50" Image="big_plus.png" ButtonColor="#865681"
+                                             Grid.Row="4" Grid.Column="0" Margin="0,0,0,20" Clicked="AddInstituteFab_Clicked" />
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

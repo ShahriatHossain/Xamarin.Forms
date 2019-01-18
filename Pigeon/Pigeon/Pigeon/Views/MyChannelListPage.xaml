@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:behav="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+             xmlns:conv="clr-namespace:Pigeon.Xaml.Converter;assembly=Pigeon"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON"
+             x:Class="Pigeon.Views.MyChannelListPage">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Name="Create" Command="{Binding ChannelCreateCommand}" Order="Primary" Priority="1">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="plus_icon.png" Android="plus_icon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <!--<ToolbarItem Name="Back" Text="Back" Command="{Binding GotoParentCommand}" Order="Primary" Priority="0">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="back_icon.png" Android="back_icon.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>-->
+  </ContentPage.ToolbarItems>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:AmazonKeyToStreamConverter x:Key="keyToStreamConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout Orientation="Vertical" Spacing="0" >
+    <Grid RowSpacing="0" ColumnSpacing="0">
+
+      <Grid.RowDefinitions>
+        <RowDefinition />
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Button Grid.Row="0" Grid.Column="0" Text="Approved" BorderColor="Black" Style="{StaticResource buttonStyleGreen}"
+              BackgroundColor="{Binding BtnApprovedBgColor}" Command="{Binding LoadApprovedChannelCommand}"></Button>
+      <Button Grid.Row="0" Grid.Column="1" Text="Pending" Style="{StaticResource buttonStyleGreen}"
+              BackgroundColor="{Binding BtnUnApprovedBgColor}" Command="{Binding LoadUnApprovedChannelCommand}"></Button>
+    </Grid>
+
+    
+    <Label Text="{Binding NoRecordFound}" HorizontalTextAlignment="Center" IsVisible="{Binding IsShowDefaultText}"></Label>
+    <ListView ItemsSource="{Binding ApprovedChannels}" x:Name="ChannelsApprovedView"  SelectedItem="{Binding SelectedChannelApi}">
+      <ListView.Behaviors>
+        <behav:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ChannelDetailCommand}" CommandParameter="{Binding SelectedItem, Source={Reference ChannelsApprovedView}}" Converter="{StaticResource SelectedItemConverter}" />
+      </ListView.Behaviors>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout Orientation="Vertical">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" />
+                </Grid>
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+  
+</ContentPage>

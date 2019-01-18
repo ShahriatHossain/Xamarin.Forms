@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  xmlns:local="clr-namespace:Pigeon.Views;assembly=Pigeon"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="Pigeon.Views.ChannelViewer">
+  <MasterDetailPage.Master>
+    <ContentPage  Title="Channels">
+      <StackLayout VerticalOptions="FillAndExpand">
+        <ListView  SeparatorVisibility="None" SelectedItem="{Binding ChannelSelected}"  ItemsSource="{Binding Channels}">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <TextCell Text="{Binding OrgShortName}" />
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>        
+      </StackLayout>     
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <local:ChannelDetailViewer />
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

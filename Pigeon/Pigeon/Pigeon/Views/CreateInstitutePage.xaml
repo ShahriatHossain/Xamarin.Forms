@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 x:Class="Pigeon.Views.CreateInstitutePage"
+			 xmlns:lilonCtl="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+			 Title="Create Institute">
+	<ScrollView Orientation="Vertical">
+		<StackLayout Orientation="Vertical">
+			<Image Margin="0,10,0,0"  WidthRequest="50" HeightRequest="50"  Source="{Binding LogoSource}">
+				<Image.GestureRecognizers>
+					<TapGestureRecognizer
+			  Command="{Binding PickPhotoCommand}" />
+				</Image.GestureRecognizers>
+			</Image>
+
+			<Entry x:Name="instituteName" Placeholder="Institute Name"  Text="{Binding InstituteName}" HorizontalTextAlignment="Center" />
+			<lilonCtl:ExtendedPicker Title="Institute Category" x:Name="instituteCategory" DisplayProperty="Name"></lilonCtl:ExtendedPicker>
+			<Entry x:Name="area" Placeholder="Area"  Text="{Binding Area}" HorizontalTextAlignment="Center" />
+			<Entry x:Name="district" Placeholder="District"  Text="{Binding District}" HorizontalTextAlignment="Center" />
+			<Entry x:Name="division" Placeholder="Division"  Text="{Binding Division}" HorizontalTextAlignment="Center" />
+			<lilonCtl:ExtendedPicker Title="Institute Type" x:Name="instituteType" DisplayProperty="Type"></lilonCtl:ExtendedPicker>
+			<Entry x:Name="description" Placeholder="Description"  Text="{Binding Description}" HorizontalTextAlignment="Center" />
+			
+			<Button x:Name="createButton" Text="Save" WidthRequest="300"
+				Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+				<Button.Triggers>
+					<MultiTrigger TargetType="Button">
+						<MultiTrigger.Conditions>
+							<BindingCondition Binding="{Binding Source={x:Reference instituteName},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+							<BindingCondition Binding="{Binding Source={x:Reference area},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+							<BindingCondition Binding="{Binding Source={x:Reference district},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+							<BindingCondition Binding="{Binding Source={x:Reference division},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+							<BindingCondition Binding="{Binding Source={x:Reference description},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+						</MultiTrigger.Conditions>
+
+						<Setter Property="IsEnabled" Value="True" />
+						<Setter Property="Command" Value="{Binding SaveCommand}" />
+					</MultiTrigger>
+				</Button.Triggers>
+			</Button>
+
+		</StackLayout>
+	</ScrollView>
+</ContentPage>

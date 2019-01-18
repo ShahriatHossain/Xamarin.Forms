@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.EditInstitutePage"
+             xmlns:lilonCtl="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+			 Title="Edit My Institute">
+    <ScrollView Orientation="Vertical">
+        <StackLayout Orientation="Vertical">
+            <Image Margin="0,10,0,0"  WidthRequest="50" HeightRequest="50"  Source="{Binding LogoSource}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+			  Command="{Binding PickPhotoCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Entry x:Name="instituteName" Placeholder="Institute Name"  Text="{Binding InstituteDetails.Name}" HorizontalTextAlignment="Center" />
+            <lilonCtl:ExtendedPicker Title="Institute Category" x:Name="instituteCategory" ItemsSource="{Binding InstituteCategoryList}" DisplayProperty="Name" SelectedItem="{Binding InstituteCategory}"></lilonCtl:ExtendedPicker>
+            <Entry x:Name="area" Placeholder="Area"  Text="{Binding InstituteDetails.Area}" HorizontalTextAlignment="Center" />
+            <Entry x:Name="district" Placeholder="District"  Text="{Binding InstituteDetails.District}" HorizontalTextAlignment="Center" />
+            <Entry x:Name="division" Placeholder="Division"  Text="{Binding InstituteDetails.Division}" HorizontalTextAlignment="Center" />
+            <lilonCtl:ExtendedPicker Title="Institute Type" x:Name="instituteType" DisplayProperty="Type" ItemsSource="{Binding InstituteTypeList}" SelectedItem="{Binding InstituteType}"></lilonCtl:ExtendedPicker>
+            <Entry x:Name="description" Placeholder="Description"  Text="{Binding InstituteDetails.Description}" HorizontalTextAlignment="Center" />
+
+            <Button x:Name="createButton" Text="Update" WidthRequest="300"
+				Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference instituteName},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+                            <BindingCondition Binding="{Binding Source={x:Reference area},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+                            <BindingCondition Binding="{Binding Source={x:Reference district},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+                            <BindingCondition Binding="{Binding Source={x:Reference division},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+                            <BindingCondition Binding="{Binding Source={x:Reference description},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+                        </MultiTrigger.Conditions>
+
+                        <Setter Property="IsEnabled" Value="True" />
+                        <Setter Property="Command" Value="{Binding UpdateCommand}" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

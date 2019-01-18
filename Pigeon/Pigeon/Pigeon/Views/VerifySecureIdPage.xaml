@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 xmlns:behavior="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+			 NavigationPage.BackButtonTitle=""
+			 Title="PIGEON"
+			 x:Class="Pigeon.Views.VerifySecureIdPage">
+  <StackLayout VerticalOptions="Center" >
+	
+	<Grid>
+
+	  <Grid.RowDefinitions>
+		<RowDefinition />
+		<RowDefinition />
+		<RowDefinition />
+
+	  </Grid.RowDefinitions>
+
+	  <Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="*" />
+	  </Grid.ColumnDefinitions>
+
+	  <Entry x:Name="secureId"  Grid.Row="1" Grid.Column="1" Keyboard="Telephone" HorizontalTextAlignment="Center"
+			 Text="{Binding SecurePin}" Style="{StaticResource entryStyleBlack}"
+			 Placeholder="Enter 4 digit secure pin" >
+		<Entry.Behaviors>
+		  <behavior:NumberValidatorBehavior x:Name="newSecureCodeValidator" />
+		  <behavior:MaxLengthValidator  MaxLength="4"/>
+		</Entry.Behaviors>
+	  </Entry>
+	</Grid>
+	<Button x:Name="loginButton" Text="Verify" WidthRequest="300"
+			Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+	  <Button.Triggers>
+		<MultiTrigger TargetType="Button">
+		  <MultiTrigger.Conditions>
+			<BindingCondition Binding="{Binding Source={x:Reference secureId},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										   Value="true" />
+		  </MultiTrigger.Conditions>
+
+		  <Setter Property="IsEnabled" Value="True" />
+		  <Setter Property="Command" Value="{Binding VerifyCommand}" />
+		</MultiTrigger>
+	  </Button.Triggers>
+	</Button>
+  </StackLayout>
+</ContentPage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.ChannelUnSubscribePage"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON"
+             Padding="20, 10">
+  <StackLayout>
+  <ScrollView Orientation="Vertical">
+    <StackLayout Orientation="Vertical">
+      
+      <Image  WidthRequest="50" HeightRequest="50"  Source="{Binding OrgLogoSource}"></Image>
+      <Entry IsEnabled="False" x:Name="name" Placeholder="Organization Name"  Text="{Binding OrganizationName}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="shortname" Placeholder="Organization Short Name"  Text="{Binding OrganizationShortName}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="cpname" Placeholder="Contact Person Name"  Text="{Binding ContactPersonName}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="area" Placeholder="Area"  Text="{Binding Area}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="city" Placeholder="City"  Text="{Binding City}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="state" Placeholder="State"  Text="{Binding State}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="country" Placeholder="Country"  Text="{Binding Country}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="pincode" Placeholder="Pin Code"  Text="{Binding PinCode}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+      <Entry IsEnabled="False" x:Name="organizationDesc" Placeholder="About Organization" Text="{Binding OrganizationDesc}" HorizontalTextAlignment="Center" Style="{StaticResource entryCommonStyle}" />
+     
+
+    </StackLayout>
+  </ScrollView>
+    <Button x:Name="createButton" Text="Unsubscribe" WidthRequest="300"
+               Style="{StaticResource buttonStyleRed}"
+                Margin="0,10,0,0" Command="{Binding UnSubscribeCommand}">
+    </Button>
+  </StackLayout>
+</ContentPage>

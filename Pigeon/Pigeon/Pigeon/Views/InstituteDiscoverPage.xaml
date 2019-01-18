@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:behav="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+             xmlns:controls="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             NavigationPage.BackButtonTitle=""
+             x:Class="Pigeon.Views.InstituteDiscoverPage"
+             x:Name="instituteDiscoverPage"
+             Title="Discover">
+    <StackLayout Orientation="Vertical" Spacing="0" Padding="20,10">
+        <SearchBar Text="{Binding SearchText}" Placeholder="Search" CancelButtonColor="Red" HeightRequest="50">
+            <SearchBar.Behaviors>
+                <behav:EventToCommandBehavior EventName="TextChanged" Command="{Binding InstituteSearchCommand}" />
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <Label Text="{Binding NoRecordFound}" HorizontalTextAlignment="Center" IsVisible="{Binding IsShowDefaultText}"></Label>
+        <ListView ItemsSource="{Binding InstituteList}" x:Name="instituteListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="35"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" 
+                                        HeightRequest="50" Grid.Row="0" Grid.Column="0" 
+                                        DownsampleToViewSize="true" Source = "{Binding LogoUri}">
+                                    </ffimageloading:CachedImage>
+
+                                    <Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" VerticalOptions="Center" Grid.Column="1" />
+
+                                    <Button  WidthRequest="80" HeightRequest="40" Text="Subscribe" TextColor="White" 
+                                             FontSize="Micro" BorderRadius="0" Margin="0,0,-5,0" 
+                                             BackgroundColor="#FF5959" Grid.Row="0" Grid.Column="2" 
+                                             Command="{Binding Source={x:Reference instituteDiscoverPage}, Path=BindingContext.SubscribeCommand}" 
+                                             CommandParameter="{Binding InstituteId}"   />
+
+                                    
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

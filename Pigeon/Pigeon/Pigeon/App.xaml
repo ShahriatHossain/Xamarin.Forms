@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:converter="clr-namespace:Pigeon.Xaml.Converter;assembly=Pigeon"
+                        xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+                        x:Class="Pigeon.App">
+  <prism:PrismApplication.Resources>
+    <ResourceDictionary>
+      <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="#865681"/>
+        <Setter Property="BarTextColor" Value="White"/>
+        <Setter Property="Tint" Value="#5c3857" />
+      </Style>
+      <converter:IntToStringConverter x:Key="intToStringConverter"/>
+      <converter:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+      <converter:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+      <converter:BooleanToObjectConverter x:Key="boolToStyleImage"
+                                              x:TypeArguments="Style">
+        <converter:BooleanToObjectConverter.FalseObject>
+          <Style TargetType="Image">
+            <Setter Property="HeightRequest" Value="10" />
+            <Setter Property="WidthRequest" Value="10" />
+            <Setter Property="Source" Value="{extension:ImageResource Pigeon.Images.error.png}" />
+          </Style>
+        </converter:BooleanToObjectConverter.FalseObject>
+
+        <converter:BooleanToObjectConverter.TrueObject>
+          <Style TargetType="Image">
+            <Setter Property="HeightRequest" Value="10" />
+            <Setter Property="WidthRequest" Value="10" />
+            <Setter Property="Source" Value="{extension:ImageResource Pigeon.Images.success.png}" />
+          </Style>
+        </converter:BooleanToObjectConverter.TrueObject>
+      </converter:BooleanToObjectConverter>
+
+      <Style x:Key="baseStyle"
+             TargetType="Label">
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="FontAttributes" Value="Italic" />
+      </Style>
+      <converter:BooleanToObjectConverter x:Key="boolToStyleEmail"
+                                           x:TypeArguments="Style">
+        <converter:BooleanToObjectConverter.FalseObject>
+          <Style TargetType="Label" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="TextColor" Value="#F44336" />
+            <Setter Property="Text" Value="Enter a valid email" />
+          </Style>
+        </converter:BooleanToObjectConverter.FalseObject>
+
+        <converter:BooleanToObjectConverter.TrueObject>
+          <Style TargetType="Label" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="TextColor" Value="#4CAF50" />
+            <Setter Property="Text" Value="Your email looks good" />
+          </Style>
+        </converter:BooleanToObjectConverter.TrueObject>
+
+      </converter:BooleanToObjectConverter>
+
+
+      <converter:BooleanToObjectConverter x:Key="boolToStyleNumericValue"
+                                             x:TypeArguments="Style">
+        <converter:BooleanToObjectConverter.FalseObject>
+          <Style TargetType="Label" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="TextColor" Value="#F44336" />
+            <Setter Property="Text" Value="Enter numeric values" />
+          </Style>
+        </converter:BooleanToObjectConverter.FalseObject>
+
+        <converter:BooleanToObjectConverter.TrueObject>
+          <Style TargetType="Label" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="TextColor" Value="#4CAF50" />
+            <Setter Property="Text" Value="Your input looks good!" />
+          </Style>
+        </converter:BooleanToObjectConverter.TrueObject>
+
+      </converter:BooleanToObjectConverter>
+
+      
+      <!--<Style TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+      </Style>-->
+      <Style x:Key="labelRedStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+
+      <Style x:Key="buttonStyleWhite" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="WidthRequest" Value="300" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontAttributes" Value="Italic" />
+        <Setter Property="BackgroundColor" Value="#ffffff" />
+      </Style>
+
+      <Style x:Key="buttonStyleRed" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="TextColor" Value="#ffffff" />
+        <Setter Property="BackgroundColor" Value="#865681" />
+      </Style>
+
+      <Style x:Key="buttonStyleGreen" TargetType="Button">
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="TextColor" Value="#ffffff" />
+        <Setter Property="BackgroundColor" Value="#227fcc" />
+      </Style>
+      
+      <Style x:Key="backgroundPigeon" TargetType="ContentPage">
+        <Setter Property="BackgroundImage">
+          <Setter.Value>
+            <OnPlatform Android="background.png"
+                        WinPhone="background.png"
+                        iOS="background.png"
+                        x:TypeArguments="x:String" />
+          </Setter.Value>
+        </Setter>
+      </Style>
+
+      <Style x:Key="entryStyleWhite" TargetType="Entry">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Italic" />
+      </Style>
+
+      <Style x:Key="entryStyleBlack" TargetType="Entry">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Italic" />
+      </Style>
+
+      <Style x:Key="entryCommonStyle" TargetType="Entry">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HeightRequest" Value="35" />
+      </Style>
+
+    </ResourceDictionary>
+  </prism:PrismApplication.Resources>
+</prism:PrismApplication>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+			 xmlns:lilonCtl="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 x:Class="Pigeon.Views.ChannelCreatePage"
+			 Padding="20, 10"
+			 NavigationPage.BackButtonTitle=""
+			 Title="Create Channel">
+	
+	<ScrollView Orientation="Vertical">
+		<StackLayout Orientation="Vertical">
+			<ffimageloading:CachedImage WidthRequest="50" HeightRequest="50"  Source="{Binding LogoSource}" 
+                                        DownsampleToViewSize="true">
+                <ffimageloading:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                </ffimageloading:CachedImage.GestureRecognizers>
+            </ffimageloading:CachedImage>
+
+            <Entry x:Name="name" Placeholder="Channel Name"  Text="{Binding ChannelName}" HorizontalTextAlignment="Center" />
+			<lilonCtl:ExtendedPicker Title="Channel Category" x:Name="channelCategory" DisplayProperty="Name"></lilonCtl:ExtendedPicker>
+
+			<Button x:Name="createButton" Text="Save" WidthRequest="300"
+				Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+				<Button.Triggers>
+					<MultiTrigger TargetType="Button">
+						<MultiTrigger.Conditions>
+							<BindingCondition Binding="{Binding Source={x:Reference name},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										 Value="true" />
+						</MultiTrigger.Conditions>
+
+						<Setter Property="IsEnabled" Value="True" />
+						<Setter Property="Command" Value="{Binding SaveCommand}" />
+					</MultiTrigger>
+				</Button.Triggers>
+			</Button>
+
+		</StackLayout>
+	</ScrollView>
+</ContentPage>

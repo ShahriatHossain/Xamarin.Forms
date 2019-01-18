@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.PopUpForInstituteFabButtons"
+             xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             CloseWhenBackgroundIsClicked="False">
+  
+    <StackLayout HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,7">
+      <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Label Text="Create Institute" TextColor="#ffffff" FontAttributes="Bold" Margin="0,15,17,0" Grid.Row="0" Grid.Column="0"></Label>
+            <fabControl:FloatingActionButton x:Name="createBtn" WidthRequest="50" HeightRequest="50" Image="small_plus.png" 
+                                             ButtonColor="#ffffff" Grid.Row="0" Grid.Column="1" Clicked="CreateInstituteFab_Clicked" />
+        
+            <Label Text="Discover Institute" TextColor="#ffffff" FontAttributes="Bold" Margin="0,15,17,0" Grid.Row="1" Grid.Column="0"></Label>
+            <fabControl:FloatingActionButton x:Name="discoverBtn" WidthRequest="50" HeightRequest="50" Image="small_discover.png" 
+                                             ButtonColor="#ffffff" Grid.Row="1" Grid.Column="1" Clicked="DiscoverInstituteFab_Clicked" />
+            
+            <Label Text="" Grid.Row="2" Grid.Column="0"></Label>
+            <fabControl:FloatingActionButton x:Name="closeBtn" WidthRequest="50" HeightRequest="50" Image="cross.png" 
+                                             ButtonColor="#865681" Grid.Row="2" Grid.Column="1" Clicked="CloseInstituteFab_Clicked" />
+      </Grid>
+    
+    </StackLayout>
+</pages:PopupPage>

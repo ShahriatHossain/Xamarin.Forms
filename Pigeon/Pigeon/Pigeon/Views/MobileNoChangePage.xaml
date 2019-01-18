@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 x:Class="Pigeon.Views.MobileNoChangePage"
+			 xmlns:behavior="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+			 Padding="20, 10"
+			 NavigationPage.BackButtonTitle=""
+			 Title="PIGEON"
+			 BackgroundColor="White">
+  
+  <StackLayout VerticalOptions="Center" >
+	
+	<Grid>
+
+	  <Grid.RowDefinitions>
+		<RowDefinition />
+		<RowDefinition />
+		<RowDefinition />
+
+	  </Grid.RowDefinitions>
+
+	  <Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="*" />
+	  </Grid.ColumnDefinitions>
+
+	  <Entry x:Name="oldCountryCode" Grid.Row="0" Grid.Column="1" Text="{Binding OldCountryCode}" Grid.ColumnSpan="2" Keyboard="Telephone"
+			 HorizontalTextAlignment="Center" Style="{StaticResource entryStyleBlack}"
+			   IsEnabled="False">
+		<Entry.Behaviors>
+		  <behavior:NumberValidatorBehavior x:Name="oldCountryCodeValidator" />
+		  <behavior:MaxLengthValidator  MaxLength="5"/>
+		</Entry.Behaviors>
+	  </Entry>
+	  <Entry x:Name="oldMobileno" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="7" Text="{Binding OldMobileNo}" Keyboard="Telephone"
+			 HorizontalTextAlignment="Center" Style="{StaticResource entryStyleBlack}"
+			 Placeholder="Mobile No" IsEnabled="False">
+		<Entry.Behaviors>
+		  <behavior:NumberValidatorBehavior x:Name="oldMobileNoValidator" />
+		  <behavior:MaxLengthValidator  MaxLength="12"/>
+		</Entry.Behaviors>
+	  </Entry>
+
+	  <Image Grid.Row="1" Grid.Column="11" x:Name="oldCountryCodeSuccessErrorImage"
+					Style="{Binding Source={x:Reference oldMobileNoValidator}, 
+								Path=IsValid, 
+								Converter={StaticResource boolToStyleImage}}"/>
+
+	  <Entry x:Name="newCountryCode"  Grid.Row="1" Grid.Column="1" Text="{Binding NewCountryCode}" Grid.ColumnSpan="2"
+			 HorizontalTextAlignment="Center" Style="{StaticResource entryStyleBlack}" Keyboard="Telephone"
+			   Placeholder="+">
+		<Entry.Behaviors>
+		  <behavior:NumberValidatorBehavior x:Name="newCountryCodeValidator" />
+		  <behavior:MaxLengthValidator  MaxLength="5"/>
+		</Entry.Behaviors>
+	  </Entry>
+	  <Entry x:Name="newMobileno" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="7" Text="{Binding NewMobileNo}"
+			 HorizontalTextAlignment="Center" Style="{StaticResource entryStyleBlack}" Keyboard="Telephone"
+			 Placeholder="Mobile No">
+		<Entry.Behaviors>
+		  <behavior:NumberValidatorBehavior x:Name="newMobileNoValidator" />
+		  <behavior:MaxLengthValidator  MaxLength="12"/>
+		</Entry.Behaviors>
+	  </Entry>
+
+	  <Image Grid.Row="1" Grid.Column="11" x:Name="newCountryCodeSuccessErrorImage"
+					Style="{Binding Source={x:Reference newMobileNoValidator}, 
+								Path=IsValid, 
+								Converter={StaticResource boolToStyleImage}}"/>
+
+
+
+	</Grid>
+
+	<Button x:Name="loginButton" Text="Update" WidthRequest="300"
+			Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+	  <Button.Triggers>
+		<MultiTrigger TargetType="Button">
+		  <MultiTrigger.Conditions>
+			<BindingCondition Binding="{Binding Source={x:Reference newCountryCode},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										   Value="true" />
+			<BindingCondition Binding="{Binding Source={x:Reference newMobileno},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+										   Value="true" />
+		  </MultiTrigger.Conditions>
+
+		  <Setter Property="IsEnabled" Value="True" />
+		  <Setter Property="Command" Value="{Binding UpdateCommand}" />
+		</MultiTrigger>
+	  </Button.Triggers>
+	</Button>
+
+  </StackLayout>
+</ContentPage>

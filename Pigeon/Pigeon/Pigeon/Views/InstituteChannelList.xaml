@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+             xmlns:controls="clr-namespace:Pigeon.Xaml.Controls;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.InstituteChannelList"
+             x:Name="instituteChannelListPage"
+             Title="{Binding Institute.Name}">
+
+    <ScrollView>
+        <StackLayout>
+            <Grid Padding="20,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ffimageloading:CachedImage HorizontalOptions="CenterAndExpand" WidthRequest="50" 
+                                        HeightRequest="50" Grid.Row="1" Grid.Column="0" 
+                                        DownsampleToViewSize="true" Source = "{Binding Institute.LogoUri}">
+                </ffimageloading:CachedImage>
+
+                <Label Text="{Binding Institute.Name}" FontSize="Large" TextColor="Black" HorizontalOptions="Center" Grid.Row="2" 
+                   Grid.Column="0" />
+
+                <Label Text="{Binding Institute.InstituteAddress}" TextColor="Gray" HorizontalOptions="Center" Grid.Row="3" Grid.Column="0" />
+
+                <StackLayout Grid.Row="4" Grid.Column="0" HorizontalOptions="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Text="{Binding Institute.SubscribeBtnText}" TextColor="{Binding Institute.SubscribeBtnTextColor}" 
+                                          Margin="0,0,-5,0" Grid.Row="0" Grid.Column="0"
+                                          WidthRequest="105" HeightRequest="40" FontSize="Micro" BorderRadius="0" 
+                                          BackgroundColor="{Binding Institute.SubscribeBtnColor}" 
+                                          Command="{Binding SubscribeCommand}"/>
+
+                        <Button Text="{Binding Institute.NumberOfSubscribers}" TextColor="Gray" Grid.Row="0" Grid.Column="1" WidthRequest="40" HeightRequest="40" 
+                                          FontSize="Micro" BorderRadius="0" BackgroundColor="#E3E2E2"/>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Grid.Row="5" Grid.Column="0"></StackLayout>
+                <StackLayout Grid.Row="6" Grid.Column="0">
+                    <Label Text="CHANNEL LIST"></Label>
+                </StackLayout>
+
+                <ListView ItemsSource="{Binding ChannelList}" x:Name="channelListView" Grid.Row="7" Grid.Column="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="15" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" WidthRequest="50" 
+                                                                    HeightRequest="50" Grid.Row="0" Grid.Column="0"
+                                                                    DownsampleToViewSize="true" Source = "{Binding LogoUri}">
+                                            </ffimageloading:CachedImage>
+
+                                            <Label Text="{Binding Name}" TextColor="Black" Grid.Row="0" VerticalOptions="Center" 
+                                               Grid.Column="1" />
+
+                                            <Image WidthRequest="15" HeightRequest="15" Grid.Row="0" Grid.Column="2" Source="lock2020.png" 
+                                               IsVisible="{Binding IsPrivate}" />
+
+                                            <Button  WidthRequest="105" HeightRequest="40" Text="{Binding SubscribeBtnText2}" 
+                                                               TextColor="{Binding SubscribeBtnTextColor2}" FontSize="Micro" BorderRadius="0"
+                                                               Margin="0,0,-5,0" BackgroundColor="{Binding SubscribeBtnColor2}" 
+                                                               Grid.Row="0" Grid.Column="3" 
+                                                               Command="{Binding Source={x:Reference instituteChannelListPage}, Path=BindingContext.SubscribeChannelCommand}"
+                                                               CommandParameter="{Binding ChannelId}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackLayout Grid.Row="8" Grid.Column="0" Margin="0,-100,0,0">
+                    <fabControl:FloatingActionButton IsVisible="{Binding Institute.IsOwner}" x:Name="FAB" HorizontalOptions="End" VerticalOptions="End" 
+                                                     WidthRequest="50" HeightRequest="50" Image="big_plus.png" 
+                                                     ButtonColor="#865681" Clicked="AddChannelFab_Clicked" />   
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

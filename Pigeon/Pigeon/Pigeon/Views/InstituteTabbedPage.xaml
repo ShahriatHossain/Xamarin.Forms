@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="Pigeon.Views.InstituteTabbedPage"
+            Title="Pigeon-In Pocket"
+            NavigationPage.HasBackButton="False"
+            BarBackgroundColor="#865681">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Name="Refresh" Command="{Binding RefreshCommand}"  Order="Primary" Priority="1">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource" iOS="refresh.png" Android="refresh.png" />
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Name="Settings" Command="{Binding ChannelSettingCommand}" Text="Settings"  Order="Secondary" Priority="4">
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+</TabbedPage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.NoticeCreatePage"
+             xmlns:conv="clr-namespace:Pigeon.Xaml.Converter;assembly=Pigeon"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             NavigationPage.BackButtonTitle=""
+             Title="PIGEON"
+             NavigationPage.HasBackButton="false"
+             Padding="20, 10">
+  
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:InvertBoolConverter x:Key="invertBoolConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ScrollView Orientation="Vertical">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      
+      <Label Text="Text / Documents" Grid.Row="0" Grid.Column="0" />
+      <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding IsPlainNotice}"/>
+      <Editor x:Name="noticeText" Text="{Binding Notice}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100"
+              HorizontalOptions="FillAndExpand" Keyboard="Chat" BackgroundColor="#E8E1E1" IsVisible="{Binding IsPlainNotice, Converter={StaticResource invertBoolConverter}}"/>
+
+      <Label Text="Picture / PDF"  Grid.Row="1" Grid.Column="0" IsVisible="{Binding IsPlainNotice}"/>
+      <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding IsPDF}" IsVisible="{Binding IsPlainNotice}"/>
+      <ffimageloading:CachedImage DownsampleToViewSize="true" WidthRequest="50" HeightRequest="50" Grid.Row="2" 
+                                 Grid.Column="0"  Source="{Binding LogoSource}" IsVisible="{Binding IsPlainNotice}">
+        <ffimageloading:CachedImage.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding PickFileCommand}" />
+        </ffimageloading:CachedImage.GestureRecognizers>
+     </ffimageloading:CachedImage>
+      <Label Text="{Binding DisplayFileName}" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" HorizontalTextAlignment="Center" IsVisible="{Binding IsPDF}"/>
+
+      <Label Text="Enable voting" Grid.Row="5" Grid.Column="0"/>
+      <Switch  x:Name="swEnableVoting" Grid.Row="5" Grid.Column="1" IsToggled="{Binding IsVotingEnable}"/>
+
+      <Label Text="Voting expiry date"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+      <DatePicker x:Name="ExpDate" IsEnabled="{Binding IsVotingEnable}" Date="{Binding VotingExpireDate}" MinimumDate="{Binding MinDate}" Format="dd/M/yyyy"   Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+      <Button Text="Post Notice" Grid.Row="9" Grid.Column="0"  Command="{Binding PostNoticeCommand}"
+              Style="{StaticResource buttonStyleRed}" WidthRequest="150"></Button>
+      <Button Text="Dismiss" Grid.Row="9" Grid.Column="1"  Command="{Binding DismissCommand}"
+              Style="{StaticResource buttonStyleRed}" WidthRequest="100"></Button>
+    </Grid>
+  </ScrollView>
+</ContentPage>

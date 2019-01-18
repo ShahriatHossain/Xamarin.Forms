@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Pigeon.Views.MessageVoteResultPage"
+             NavigationPage.BackButtonTitle=""
+             Title="{Binding Channel.Name}"
+             Padding="20, 10">
+
+  <ScrollView Orientation="Vertical">
+    <StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{Binding Message.Notice}" BackgroundColor="#EBEBEB" IsVisible="{Binding IsText}" />
+        <Image HorizontalOptions="StartAndExpand" Source="{Binding ImageUrl}" IsVisible="{Binding IsImageUrl}" WidthRequest="50" HeightRequest="50"></Image>
+        <Image HorizontalOptions="StartAndExpand" Source="{Binding PdfLogoSource}" IsVisible="{Binding IsPDF}" WidthRequest="50" HeightRequest="50"></Image>
+        <Label Text="{Binding Message.FileDisplayName}"></Label>
+      </StackLayout>
+      <chart:SfChart x:Name="Chart" VerticalOptions="FillAndExpand">
+
+        <chart:SfChart.Title>
+          <chart:ChartTitle Text="Results"/>
+        </chart:SfChart.Title>
+
+        <chart:SfChart.Legend>
+          <chart:ChartLegend/>
+        </chart:SfChart.Legend>
+
+        <chart:SfChart.Series>
+          <chart:PieSeries ItemsSource="{Binding Votes}" XBindingPath="Key" YBindingPath="Value" StartAngle="75"  EnableAnimation="True"
+                           EndAngle ="435" EnableSmartLabels="True" ConnectorLineType = "Bezier" DataMarkerPosition = "OutsideExtended" LegendIcon="Rectangle">
+            <chart:PieSeries.DataMarker>
+              <chart:ChartDataMarker LabelContent="Percentage" ShowLabel="True">
+                <chart:ChartDataMarker.LabelStyle>
+                  <chart:DataMarkerLabelStyle LabelPosition="Center"/>
+                </chart:ChartDataMarker.LabelStyle>
+              </chart:ChartDataMarker>
+            </chart:PieSeries.DataMarker>
+          </chart:PieSeries>
+        </chart:SfChart.Series>
+
+      </chart:SfChart>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

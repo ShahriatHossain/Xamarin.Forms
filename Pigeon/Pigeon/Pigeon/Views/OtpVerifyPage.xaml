@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 xmlns:behavior="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 x:Class="Pigeon.Views.OtpVerifyPage"
+			 Padding="20, 10"
+			 BackgroundColor="White"
+			 NavigationPage.BackButtonTitle=""
+			 Title="PIGEON"
+			 NavigationPage.HasBackButton="false">
+  <ContentPage.ToolbarItems>
+	<ToolbarItem x:Name="Resend" Text="Resend" Command="{Binding ResendOtpCommand}"  Order="Primary" Priority="2">
+	</ToolbarItem>
+  </ContentPage.ToolbarItems>
+<StackLayout VerticalOptions="Center">
+  
+		<Entry x:Name="otpcode" WidthRequest="300" Text="{Binding OtpCode}" Margin="0,0,0,50"
+		   Style="{StaticResource entryStyleBlack}" Placeholder="OTP" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center">
+			<Entry.Behaviors>
+				<behavior:MaxLengthValidator x:Name="otpCodeValidator"  MaxLength="10"/>
+			</Entry.Behaviors>
+		</Entry>
+
+		<Button x:Name="verifyButton" Text="Verify" WidthRequest="300"
+			Style="{StaticResource buttonStyleRed}"
+				IsEnabled="false">
+
+	<Button.Triggers>
+	  <MultiTrigger TargetType="Button">
+		<MultiTrigger.Conditions>
+		  <BindingCondition Binding="{Binding Source={x:Reference otpcode},
+											   Path=Text.Length,
+											   Converter={StaticResource dataHasBeenEntered}}"
+									 Value="true" />
+		</MultiTrigger.Conditions>
+
+		<Setter Property="IsEnabled" Value="True" />
+		<Setter Property="Command" Value="{Binding VerifyCommand}" />
+	  </MultiTrigger>
+	</Button.Triggers>
+  </Button>
+  </StackLayout>
+
+</ContentPage>

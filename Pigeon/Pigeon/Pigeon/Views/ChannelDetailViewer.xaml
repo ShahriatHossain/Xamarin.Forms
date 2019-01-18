@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:local="clr-namespace:Pigeon.Xaml.DataTemplateSelector;assembly=Pigeon"
+             xmlns:conv="clr-namespace:Pigeon.Xaml.Converter;assembly=Pigeon"
+             xmlns:unoCtl="clr-namespace:XPigeon.Xaml.Controls;assembly=Pigeon"
+             xmlns:behav="clr-namespace:Pigeon.Behaviors;assembly=Pigeon"
+             xmlns:extension="clr-namespace:Pigeon.Extensions;assembly=Pigeon"
+             xmlns:fabControl="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="Pigeon.Views.ChannelDetailViewer"
+             Padding="10, 0, 10, 10"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.BackButtonTitle=""
+             Title="{Binding Channel.Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="securePin" Name="SecurePin" Command="{Binding SetSecurePinCommand}" Text="Secure Pin"  Order="Secondary" Priority="1" />
+        <ToolbarItem x:Name="subscribers" Name="Subscribers" Command="{Binding SubscriberCommand}" Text="Subscribers"  Order="Secondary" Priority="2"/>
+        <ToolbarItem x:Name="Unsubscribe" Name="Unsubscribe" Command="{Binding UnscribeChannelCommand}" Text="Unsubscribe"  Order="Secondary" Priority="3" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:DateTimeToDayConverter x:Key="DateTimeToDayConverter"/>
+            <conv:UrlToImageSourceConverter x:Key="UrlToImageSourceConverter"/>
+            <DataTemplate x:Key="textMessageTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" BackgroundColor="#EBEBEB" Padding="5">
+                            <Label Text="{Binding Message.Text}" />
+                            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,0,0,10">
+                                <unoCtl:HyperLinkLabel Text="View Report" Margin="20,10,0,0" IsVisible="{Binding IsVoteCasted}" NavigateCommand="{Binding ViewVoteResult}"></unoCtl:HyperLinkLabel>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" IsVisible="{Binding Message.EnableVoting}">
+                                    <Label Text="{Binding VotingStatus}" TextColor="Green" Margin="0,10,0,0" />
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" Source="thumbs_up.png"
+                                                                Margin="0,0,10,0" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" 
+                                                                Source="thumbs_down.png" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding Message.SendTime, StringFormat='{0:hh:mm tt}'}" FontSize="12" Margin="0,0,10,0" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="imageMessageTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,10,0,0">
+                                <ffimageloading:CachedImage DownsampleToViewSize="true" HorizontalOptions="StartAndExpand" 
+                                                                Source="file_upload_icon.png" WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LoadLargeImage}" />
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                </ffimageloading:CachedImage>
+                                <!--<Label Text="{Binding Message.FileDisplayName}" Margin="0,0,10,0"></Label>-->
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="0,0,0,10">
+                                <unoCtl:HyperLinkLabel Text="View Report" Margin="20,10,0,0" IsVisible="{Binding IsVoteCasted}" NavigateCommand="{Binding ViewVoteResult}"></unoCtl:HyperLinkLabel>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" IsVisible="{Binding Message.EnableVoting}">
+                                    <Label Text="{Binding VotingStatus}" TextColor="Green" Margin="0,10,0,0" />
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" 
+                                                                Source="thumbs_up.png" Margin="0,0,10,0" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" 
+                                                                Source="thumbs_down.png" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding Message.SendTime, StringFormat='{0:hh:mm tt}'}" FontSize="12" Margin="0,0,10,0" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="pdfMessageTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,10,0,0">
+                                <ffimageloading:CachedImage DownsampleToViewSize="true" HorizontalOptions="StartAndExpand" 
+                                                                Source="pdf_download_icon.png" WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LoadPDF}" />
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                </ffimageloading:CachedImage>
+                                <!--<Label Text="{Binding Message.FileDisplayName}" Margin="0,0,10,0"></Label>-->
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="0,0,0,10">
+                                <unoCtl:HyperLinkLabel Text="View Report" Margin="20,10,0,0" IsVisible="{Binding IsVoteCasted}" NavigateCommand="{Binding ViewVoteResult}"></unoCtl:HyperLinkLabel>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" IsVisible="{Binding Message.EnableVoting}">
+                                    <Label Text="{Binding VotingStatus}" TextColor="Green" Margin="0,10,0,0" />
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" 
+                                                                Source="thumbs_up.png" Margin="0,0,10,0" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                    <ffimageloading:CachedImage DownsampleToViewSize="true" IsVisible="{Binding CanVote}" 
+                                                                Source="thumbs_down.png" WidthRequest="44" HeightRequest="57">
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding Message.SendTime, StringFormat='{0:hh:mm tt}'}" FontSize="12" Margin="0,0,10,0" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <local:MessageDataTemplateSelector x:Key="messageDataTemplateSelector"
+          TextMessageTemplate="{StaticResource textMessageTemplate}"
+          ImageMessageTemplate="{StaticResource imageMessageTemplate}"
+          PDFMessageTemplate="{StaticResource pdfMessageTemplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Orientation="Vertical" Spacing="0" Padding="-10,0,0,0">
+
+        <Label Text="No record found." HorizontalTextAlignment="Center" IsVisible="{Binding IsShowDefaultText}"></Label>
+        <ListView VerticalOptions="FillAndExpand" IsGroupingEnabled="true" SeparatorVisibility="Default" ItemsSource="{Binding MessageGroups}"  HasUnevenRows="true"
+                x:Name="lv" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsRefreshing}" ItemTemplate="{StaticResource messageDataTemplateSelector}" SelectedItem="{Binding CurrentMessage}"
+                GroupDisplayBinding="{Binding SendTime, Converter={StaticResource DateTimeToDayConverter}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="Center" Margin="0,10,0,5">
+                            <Label  Text="{Binding SendTime, Converter={StaticResource DateTimeToDayConverter}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.Behaviors>
+                <behav:EventToCommandBehavior EventName="Refreshing" Command="{Binding OnRefresh}"  />
+            </ListView.Behaviors>
+        </ListView>
+
+        <fabControl:FloatingActionButton IsVisible="{Binding Channel.OwnerFlag}" x:Name="FAB" HorizontalOptions="End" VerticalOptions="End" 
+                                             WidthRequest="50" HeightRequest="50" Image="big_plus.png" ButtonColor="#865681"
+                                             Margin="0,0,0,20" Clicked="AddChannelFab_Clicked" />
+    </StackLayout>
+
+</ContentPage>
