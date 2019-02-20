@@ -17,7 +17,7 @@ namespace Pigeon.Services.Implementation
             this.PushToFcm(channelId, channelName, notice);
         }
 
-        private const string FCM_API_KEY = "AIzaSyCI3IjP7U7Vqo3zPzVbDhNEGXHrnbT5oNk";
+        private const string FCM_API_KEY = "xxxxx";
         private const string FCM_POST_URL = "https://fcm.googleapis.com/fcm/send";
 
         private void PushToFcm(int? channelId, string channelName, string notice)
