@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Tailoryfy.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ScrollView>
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Margin="20,0,20,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="logo.png" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,20,0,0" HorizontalOptions="CenterAndExpand"></Image>
+                <Label Text="Tailoryfy" FontSize="Large" FontAttributes="Bold" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,20" HorizontalTextAlignment="Center"></Label>
+
+                <Entry x:Name="email"  BackgroundColor="#F5F5F5" Text="{Binding Email}" TextColor="#999999" Placeholder="EMAIL ID" Grid.Row="3" Grid.ColumnSpan="2"></Entry>
+                <Entry x:Name="phoneNo" BackgroundColor="#F5F5F5" Text="{Binding PhoneNo}" TextColor="#999999" Placeholder="PHONE NO." Grid.Row="4" Grid.ColumnSpan="2"></Entry>
+
+                <Button x:Name="loginButton" BackgroundColor="#E7437A" TextColor="#ffffff" Text="REGISTER" Margin="0,20,0,0" Command="{Binding LoginCommand}" Grid.Row="5" Grid.ColumnSpan="2"></Button>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

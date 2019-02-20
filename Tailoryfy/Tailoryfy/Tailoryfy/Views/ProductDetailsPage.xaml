@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 x:Class="Tailoryfy.Views.ProductDetailsPage"
+			 Title="{Binding ProductCategory.Name}"
+             BackgroundColor="White"
+			 Padding="10,10,10,10">
+
+	<ScrollView>
+		<StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding ProductCategory.Description}" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0"></Label>
+
+                <flv:FlowListView x:Name="productStepFlowListView" SeparatorVisibility="None" HasUnevenRows="True" 
+										 FlowItemsSource="{Binding ProductStepList}" Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" >
+
+                    <flv:FlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Name}" HorizontalTextAlignment="Start" />
+                        </DataTemplate>
+                    </flv:FlowListView.FlowColumnTemplate>
+
+                </flv:FlowListView>
+                
+                <Image Source="{Binding SelectedProductStep.Image}" WidthRequest="570" HeightRequest="23"
+                       Grid.Row="2" Grid.Column="0"/>
+
+                <StackLayout Grid.Row="3" Grid.Column="0" BackgroundColor="#F6F4F4" Padding="20,20,20,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="upload_icon.png" WidthRequest="58" HeightRequest="49" HorizontalOptions="StartAndExpand"
+                               Grid.Row="0" Grid.Column="0"></Image>
+                        <Label Text="Upload image &#10; as per your neck design" Grid.Row="0" Grid.Column="1"></Label>
+                    </Grid>
+                    
+                </StackLayout>
+                
+                <flv:FlowListView SeparatorVisibility="None" HasUnevenRows="True" 
+										  FlowItemsSource="{Binding ProductStepAttachmentList}" 
+                                          FlowColumnMinWidth="110" Grid.Row="4" Grid.Column="0" >
+
+                    <flv:FlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Image}" WidthRequest="100" HeightRequest="100" Margin="0,10,10,10" Grid.Row="0" Grid.Column="0"></Image>
+
+                                <Label Text="{Binding Name}" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="0" />
+                            </Grid>
+                        </DataTemplate>
+                    </flv:FlowListView.FlowColumnTemplate>
+
+                </flv:FlowListView>
+            </Grid>
+			
+		</StackLayout>
+	</ScrollView>
+</ContentPage>
